@@ -120,7 +120,7 @@ export default function GameCard({ game, onClick }: GameCardProps) {
           ) : (
             <div className="flex gap-4">
               <button 
-                className="w-[30%] text-white px-3 py-2 rounded-lg font-semibold text-sm cursor-pointer bg-gray-500/20 border-none inline-flex items-center justify-center transition-all duration-300 hover:scale-105"
+                className="w-[40%] text-white px-3 py-2 rounded-lg font-semibold text-sm cursor-pointer bg-gray-500/20 border-none inline-flex items-center justify-center transition-all duration-300 hover:scale-105"
                 style={{
                   background: 'linear-gradient(135deg, hsl(330 91% 65%), hsl(340 82% 52%))',
                   boxShadow: '0 10px 25px -5px hsl(330 91% 65% / 0.25)'
@@ -128,7 +128,7 @@ export default function GameCard({ game, onClick }: GameCardProps) {
                 onClick={onClick}
               >
                 <Play className="w-3 h-3 inline mr-1" />
-                Play Now
+                Play {game.name}
               </button>
               {game.githubUrl && (
                 <a
