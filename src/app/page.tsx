@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Gamepad2, Zap, Star, Trophy, Users } from 'lucide-react';
+import { Gamepad2, Zap, Star, Trophy, Users, Github } from 'lucide-react';
 import GameCard from '@/components/GameCard';
 import { games } from '@/data/games';
 
@@ -158,6 +158,143 @@ export default function Home() {
               <p className="text-gaming">
                 Compete with players worldwide and climb the leaderboards in each game.
               </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Participate Section */}
+      <section className="py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+              <span className="inline-block -rotate-1 text-3xl md:text-4xl">Participate</span>
+            </h2>
+            <p className="text-xl text-gaming max-w-3xl mx-auto">
+              Join our gaming community and help us build amazing experiences together
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Request Features / Report Bugs */}
+            <div className="gaming-card p-6 text-center group">
+              <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                <Zap className="w-8 h-8 text-primary" />
+              </div>
+              <h3 className="text-xl font-bold text-white mb-4">Request & Report</h3>
+              <p className="text-gaming mb-6">
+                Have an idea for a new game feature? Found a bug? Let us know on GitHub!
+              </p>
+              <a
+                href="https://github.com/smarlify"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-gaming inline-flex items-center"
+              >
+                <Zap className="w-4 h-4 mr-2" />
+                Create Issue
+              </a>
+            </div>
+
+            {/* Contribute */}
+            <div className="gaming-card p-6 text-center group">
+              <div className="w-16 h-16 bg-secondary/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                <Github className="w-8 h-8 text-secondary" />
+              </div>
+              <h3 className="text-xl font-bold text-white mb-4">Contribute</h3>
+              <p className="text-gaming mb-6">
+                Help us improve our games by contributing code, fixing bugs, or adding features.
+              </p>
+              <a
+                href="https://github.com/smarlify"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-gaming inline-flex items-center"
+              >
+                <Github className="w-4 h-4 mr-2" />
+                Make PR
+              </a>
+            </div>
+
+            {/* Learn & Share */}
+            <div className="gaming-card p-6 text-center group">
+              <div className="w-16 h-16 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                <Trophy className="w-8 h-8 text-accent" />
+              </div>
+              <h3 className="text-xl font-bold text-white mb-4">Learn & Share</h3>
+              <p className="text-gaming mb-6">
+                All our games are open source with MIT license. Learn from our code and share with others!
+              </p>
+              <a
+                href="https://github.com/smarlify"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-gaming inline-flex items-center"
+              >
+                <Trophy className="w-4 h-4 mr-2" />
+                View Source
+              </a>
+            </div>
+
+            {/* Sponsor */}
+            <div className="gaming-card p-6 text-center group">
+              <div className="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                <span className="text-2xl">☕</span>
+              </div>
+              <h3 className="text-xl font-bold text-white mb-4">Sponsor Us</h3>
+              <p className="text-gaming mb-6">
+                Support our development efforts. Buy us a coffee or send crypto!
+              </p>
+              <div className="space-y-2">
+                <a
+                  href="https://buymeacoffee.com/smarlify"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-gaming inline-flex items-center w-full justify-center"
+                >
+                  <span className="mr-2">☕</span>
+                  Buy Coffee
+                </a>
+                <div className="text-xs text-muted-foreground">
+                  BTC: 1A2B3C... | ETH: 0x123...
+                </div>
+              </div>
+            </div>
+
+            {/* Hire Us */}
+            <div className="gaming-card p-6 text-center group">
+              <div className="w-16 h-16 bg-purple-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                <span className="text-2xl">💼</span>
+              </div>
+              <h3 className="text-xl font-bold text-white mb-4">Hire Us</h3>
+              <p className="text-gaming mb-6">
+                Need a custom game built? We create amazing gaming experiences tailored to your needs.
+              </p>
+              <a
+                href="mailto:hello@smarlify.co?subject=Game Development Inquiry"
+                className="btn-gaming inline-flex items-center"
+              >
+                <span className="mr-2">💼</span>
+                Contact Us
+              </a>
+            </div>
+
+            {/* Add Your Game */}
+            <div className="gaming-card p-6 text-center group">
+              <div className="w-16 h-16 bg-pink-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                <span className="text-2xl">🎮</span>
+              </div>
+              <h3 className="text-xl font-bold text-white mb-4">Add Your Game</h3>
+              <p className="text-gaming mb-6">
+                Have a game you'd like to showcase? We'd love to feature it on our platform!
+              </p>
+              <a
+                href="mailto:hello@smarlify.co?subject=Game Submission"
+                className="btn-gaming inline-flex items-center"
+              >
+                <span className="mr-2">🎮</span>
+                Submit Game
+              </a>
             </div>
           </div>
         </div>
