@@ -18,29 +18,35 @@ export default function GameCard({ game, onClick }: GameCardProps) {
     >
       {/* Game Thumbnail */}
       <div className="relative mb-4 overflow-hidden rounded-xl">
-        <div className={`aspect-video ${game.gradient} flex items-center justify-center relative`}>
-          {isComingSoon ? (
-            <div className="text-center">
-              <Clock className="w-16 h-16 mx-auto mb-2 text-white/80" />
-              <p className="text-white font-semibold">Coming Soon</p>
-            </div>
-          ) : (
-            <div className="text-center">
-              {/*
-              <Play className="w-16 h-16 mx-auto mb-2 text-white/80 group-hover:text-white transition-colors" />
-              <p className="text-white/80 group-hover:text-white font-semibold transition-colors">Play Now</p>
-              */}
+        <div className="aspect-video relative">
+          {/* Game Screenshot */}
+          <img 
+            src={game.thumbnail} 
+            alt={game.name}
+            className="w-full h-full object-cover"
+          />
+          
+          {/* Gradient Overlay */}
+          <div className={`absolute inset-0 ${game.gradient} opacity-30`} />
+          
+          {/* Coming Soon Overlay */}
+          {isComingSoon && (
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="text-center">
+                <Clock className="w-16 h-16 mx-auto mb-2 text-white/80" />
+                <p className="text-white font-semibold">Coming Soon</p>
+              </div>
             </div>
           )}
           
-                  {/* Hover Overlay */}
-                  {!isComingSoon && (
-                    <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                      <div className="bg-white/20 backdrop-blur-sm rounded-full p-4">
-                        <Gamepad2 className="w-8 h-8 text-white" />
-                      </div>
-                    </div>
-                  )}
+          {/* Hover Overlay */}
+          {!isComingSoon && (
+            <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+              <div className="bg-white/20 backdrop-blur-sm rounded-full p-4">
+                <Gamepad2 className="w-8 h-8 text-white" />
+              </div>
+            </div>
+          )}
         </div>
         
         {/* Status Badge */}
