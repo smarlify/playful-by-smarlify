@@ -23,11 +23,8 @@ export default function GameCard({ game, onClick }: GameCardProps) {
           <img 
             src={game.thumbnail} 
             alt={game.name}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-300"
           />
-          
-          {/* Focus Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-black/20" />
           
           {/* Coming Soon Overlay */}
           {isComingSoon && (
@@ -39,11 +36,11 @@ export default function GameCard({ game, onClick }: GameCardProps) {
             </div>
           )}
           
-          {/* Hover Overlay */}
+          {/* Game Icon with Hover Effect */}
           {!isComingSoon && (
             <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-              <div className="bg-white/20 backdrop-blur-sm rounded-full p-4">
-                <Gamepad2 className="w-8 h-8 text-white" />
+              <div className="bg-white/20 backdrop-blur-sm rounded-full p-3">
+                <Gamepad2 className="w-6 h-6 text-white" />
               </div>
             </div>
           )}

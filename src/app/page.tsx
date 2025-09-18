@@ -58,17 +58,18 @@ export default function Home() {
 
             {/* Featured Game */}
             <div className="max-w-4xl mx-auto">
-              <div className="gaming-card p-8 text-left">
+              <div className="gaming-card p-8 text-left group">
                 <div className="flex flex-col md:flex-row gap-6 items-center">
                   <div className="aspect-video w-full md:w-1/2 rounded-xl relative overflow-hidden">
                     <img 
                       src={featuredGame.thumbnail} 
                       alt={featuredGame.name}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-300"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-black/20" />
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <Gamepad2 className="w-16 h-16 text-white/80" />
+                    <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                      <div className="bg-white/20 backdrop-blur-sm rounded-full p-4">
+                        <Gamepad2 className="w-8 h-8 text-white" />
+                      </div>
                     </div>
                   </div>
                   <div className="flex-1">
