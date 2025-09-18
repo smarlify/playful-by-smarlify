@@ -13,13 +13,13 @@ export default function GameCard({ game, onClick }: GameCardProps) {
 
   return (
     <div 
-      className={`game-card group ${isComingSoon ? 'opacity-75' : ''}`}
+      className={`game-card group ${isComingSoon ? 'opacity-75' : ''} overflow-hidden`}
       onClick={isComingSoon ? undefined : onClick}
     >
       {/* Game Thumbnail */}
       <div className="relative mb-4 overflow-hidden rounded-xl">
         <div className={`aspect-video ${game.gradient} flex items-center justify-center relative`}>
-          {isComingSoon ? (
+          {/* isComingSoon ? (
             <div className="text-center">
               <Clock className="w-16 h-16 mx-auto mb-2 text-white/80" />
               <p className="text-white/80 font-semibold">Coming Soon</p>
@@ -29,7 +29,7 @@ export default function GameCard({ game, onClick }: GameCardProps) {
               <Play className="w-16 h-16 mx-auto mb-2 text-white/80 group-hover:text-white transition-colors" />
               <p className="text-white/80 group-hover:text-white font-semibold transition-colors">Play Now</p>
             </div>
-          )}
+          )*/}
           
           {/* Hover Overlay */}
           {!isComingSoon && (
@@ -42,17 +42,17 @@ export default function GameCard({ game, onClick }: GameCardProps) {
         </div>
         
         {/* Status Badge */}
-        <div className="absolute top-3 right-3">
+        {/* <div className="absolute top-3 right-3">
           {isComingSoon ? (
             <span className="bg-yellow-500/90 text-black px-3 py-1 rounded-full text-xs font-semibold backdrop-blur-sm">
               Coming Soon
             </span>
           ) : (
             <span className="bg-green-500/90 text-white px-3 py-1 rounded-full text-xs font-semibold backdrop-blur-sm">
-              Live
+              Ready to play
             </span>
           )}
-        </div>
+        </div> */}
       </div>
 
       {/* Game Info */}
@@ -116,12 +116,16 @@ export default function GameCard({ game, onClick }: GameCardProps) {
               Coming Soon
             </button>
           ) : (
-            <div className="flex gap-2">
+            <div className="flex gap-4">
               <button 
-                className="w-[40%] btn-gaming group-hover:scale-105 transition-transform"
+                className="w-[35%] text-white px-3 py-2 rounded-lg font-semibold text-sm cursor-pointer bg-gray-500/20 border-none inline-flex items-center justify-center transition-all duration-300 hover:scale-105"
+                style={{
+                  background: 'linear-gradient(135deg, hsl(330 91% 65%), hsl(340 82% 52%))',
+                  boxShadow: '0 10px 25px -5px hsl(330 91% 65% / 0.25)'
+                }}
                 onClick={onClick}
               >
-                <Play className="w-4 h-4 inline mr-2" />
+                <Play className="w-3 h-3 inline mr-1" />
                 Play Now
               </button>
               {game.githubUrl && (
@@ -129,9 +133,14 @@ export default function GameCard({ game, onClick }: GameCardProps) {
                   href={game.githubUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-[40%] btn-gaming group-hover:scale-105 transition-transform"
+                  className="w-[35%] text-white px-3 py-2 rounded-lg font-semibold text-sm cursor-pointer border-none inline-flex items-center justify-center transition-all duration-300 hover:scale-105"
+                  style={{
+                    background: 'linear-gradient(135deg, hsl(0 0% 20%), hsl(0 0% 15%))',
+                    boxShadow: '0 10px 25px -5px hsl(0 0% 20% / 0.25)'
+                  }}
+                  onClick={(e) => e.stopPropagation()}
                 >
-                  <Github className="w-4 h-4 inline mr-2" />
+                  <Github className="w-3 h-3 inline mr-1" />
                   Contribute
                 </a>
               )}
