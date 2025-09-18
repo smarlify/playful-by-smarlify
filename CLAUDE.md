@@ -1,4 +1,4 @@
-# Play.Smarlify.co - Gaming Hub Project
+# Playful by Smarlify - Gaming Hub Project
 
 ## 🎮 Project Overview
 
@@ -160,7 +160,7 @@ _Play.Smarlify.co/
 
 ### Repository & Deployment
 - **GitHub**: `git@github.com:davidnekovarcz/play-smarlify-co.git`
-- **Heroku App**: `play-smarlify-games`
+- **Heroku App**: `playful-by-smarlify`
 - **Node Version**: 22.17.0
 
 ### CORS Configuration
