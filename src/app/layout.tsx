@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import ParticleBackground from '@/components/ParticleBackground';
 import Script from "next/script";
 
 const inter = Inter({
@@ -74,6 +75,7 @@ export default function RootLayout({
       <body
         className={`${inter.variable} font-sans antialiased gaming-bg`}
       >
+        <ParticleBackground />
         {children}
       </body>
     </html>
