@@ -2,17 +2,31 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Gamepad2, Zap, Star, Trophy, Users, Github } from 'lucide-react';
+import { Gamepad2, Zap, Star, Trophy, Users, Github, Copy, Check } from 'lucide-react';
 import GameCard from '@/components/GameCard';
 import { games } from '@/data/games';
 
 export default function Home() {
   const router = useRouter();
   const [featuredGame] = useState(games[0]); // Traffic Run as featured
+  const [showCryptoPopup, setShowCryptoPopup] = useState(false);
+  const [copied, setCopied] = useState(false);
 
   const handleGameClick = (gameId: string) => {
     router.push(`/${gameId}`);
   };
+
+  const copyToClipboard = async (text: string) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch (err) {
+      console.error('Failed to copy: ', err);
+    }
+  };
+
+  const btcAddress = "bc1qnk53eshq6ja9nl8rdwzgq982s6vmnuqdpancj8";
 
   return (
     <div className="min-h-screen">
@@ -246,17 +260,33 @@ export default function Home() {
                 Support our development efforts. Buy us a coffee or send us a crypto donation.
               </p>
               <div className="space-y-2">
-                <a
-                  href="https://buymeacoffee.com/smarlify"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-gaming inline-flex items-center w-full justify-center"
-                >
-                  <span className="mr-2">☕</span>
-                  Buy Coffee
-                </a>
-                <div className="text-xs text-muted-foreground">
-                  BTC: 1A2B3C... | ETH: 0x123...
+                <div className="flex gap-2">
+                  <a
+                    href="https://buymeacoffee.com/dave5w"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-gaming inline-flex items-center flex-1 justify-center"
+                    style={{
+                      background: 'linear-gradient(135deg, #FFDD00, #FFC700)',
+                      color: '#000000',
+                      boxShadow: '0 10px 25px -5px #FFDD00 / 0.25'
+                    }}
+                  >
+                    <span className="mr-2">☕</span>
+                    Buy Coffee
+                  </a>
+                  <button
+                    onClick={() => setShowCryptoPopup(true)}
+                    className="btn-gaming inline-flex items-center flex-1 justify-center"
+                    style={{
+                      background: 'linear-gradient(135deg, #f7931a, #ff9500)',
+                      color: '#ffffff',
+                      boxShadow: '0 10px 25px -5px #f7931a / 0.25'
+                    }}
+                  >
+                    <span className="mr-2">₿</span>
+                    Send Crypto
+                  </button>
                 </div>
               </div>
             </div>
@@ -378,6 +408,74 @@ export default function Home() {
           </div>
         </div>
       </footer>
+
+      {/* Crypto Donation Popup */}
+      {showCryptoPopup && (
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+          <div className="gaming-card p-8 max-w-lg w-full relative">
+            <button
+              onClick={() => setShowCryptoPopup(false)}
+              className="absolute top-4 right-4 text-muted-foreground hover:text-white transition-colors"
+            >
+              ✕
+            </button>
+            
+            <div className="text-center mb-6">
+              <div className="w-16 h-16 bg-orange-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-2xl">₿</span>
+              </div>
+              <h3 className="text-2xl font-bold text-white mb-2">Send Bitcoin</h3>
+              <p className="text-gaming">Support our development with a Bitcoin donation</p>
+            </div>
+
+            <div className="space-y-4">
+              {/* QR Code */}
+              <div className="flex justify-center">
+                <div className="bg-white p-4 rounded-lg">
+                  <img
+                    src={`https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(btcAddress)}`}
+                    alt="Bitcoin QR Code"
+                    className="w-48 h-48"
+                  />
+                </div>
+              </div>
+
+              {/* Address */}
+              <div className="space-y-2">
+                <label className="text-sm text-muted-foreground">Bitcoin Address:</label>
+                <div className="flex items-center gap-2 p-3 bg-card/50 rounded-lg">
+                  <code className="flex-1 text-sm text-white font-mono break-all">
+                    {btcAddress}
+                  </code>
+                  <button
+                    onClick={() => copyToClipboard(btcAddress)}
+                    className="p-2 hover:bg-white/10 rounded transition-colors"
+                    title="Copy address"
+                  >
+                    {copied ? (
+                      <Check className="w-4 h-4 text-green-400" />
+                    ) : (
+                      <Copy className="w-4 h-4 text-muted-foreground" />
+                    )}
+                  </button>
+                </div>
+                {copied && (
+                  <p className="text-green-400 text-sm text-center">Address copied to clipboard!</p>
+                )}
+              </div>
+
+              <div className="text-center">
+                <button
+                  onClick={() => setShowCryptoPopup(false)}
+                  className="btn-gaming"
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
