@@ -69,9 +69,9 @@
   }
 
   body {
-    @apply bg-background text-foreground;
-    font-weight: 300;
     background: linear-gradient(135deg, hsl(221 84% 5%), hsl(221 39% 11%));
+    color: hsl(0 0% 98%);
+    font-weight: 300;
     min-height: 100vh;
   }
 }
@@ -105,20 +105,43 @@
 
   /* Gaming Button Variants */
   .btn-gaming {
-    @apply bg-gradient-primary text-primary-foreground px-8 py-4 rounded-lg font-semibold text-lg shadow-gaming hover:shadow-neon transition-all duration-300 hover:scale-105 hover:shadow-glow;
+    @apply text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 hover:scale-105;
+    background: linear-gradient(135deg, hsl(330 91% 65%), hsl(340 82% 52%));
+    box-shadow: 0 25px 50px -12px hsl(330 91% 65% / 0.25);
+  }
+  
+  .btn-gaming:hover {
+    box-shadow: 0 25px 50px -12px hsl(193 82% 31% / 0.25), 0 0 20px hsl(330 91% 65% / 0.3);
   }
   
   .btn-neon {
-    @apply bg-gradient-gaming text-white border border-cyan-400/20 px-6 py-3 rounded-lg font-medium backdrop-blur-sm hover:bg-cyan-400/10 hover:border-cyan-400/40 transition-all duration-300 hover:shadow-glow;
+    @apply text-white border border-cyan-400/20 px-6 py-3 rounded-lg font-medium backdrop-blur-sm hover:bg-cyan-400/10 hover:border-cyan-400/40 transition-all duration-300;
+    background: linear-gradient(135deg, hsl(193 82% 31%), hsl(199 89% 48%));
+  }
+  
+  .btn-neon:hover {
+    box-shadow: 0 0 20px hsl(330 91% 65% / 0.3);
   }
 
   .btn-glow {
-    @apply bg-gradient-neon text-white px-6 py-3 rounded-lg font-medium shadow-glow hover:shadow-gaming transition-all duration-300 hover:scale-105;
+    @apply text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:scale-105;
+    background: linear-gradient(135deg, hsl(45 93% 58%), hsl(330 91% 65%));
+    box-shadow: 0 0 20px hsl(330 91% 65% / 0.3);
+  }
+  
+  .btn-glow:hover {
+    box-shadow: 0 25px 50px -12px hsl(330 91% 65% / 0.25);
   }
 
   /* Gaming Card Styles */
   .gaming-card {
-    @apply bg-card/80 backdrop-blur-md border border-white/10 rounded-2xl shadow-elegant hover:shadow-gaming transition-all duration-500 hover:-translate-y-2 hover:border-primary/20;
+    @apply backdrop-blur-md border border-white/10 rounded-2xl transition-all duration-500 hover:-translate-y-2 hover:border-pink-500/20;
+    background: hsl(221 39% 11% / 0.8);
+    box-shadow: 0 10px 30px -5px hsl(221 84% 5% / 0.1);
+  }
+  
+  .gaming-card:hover {
+    box-shadow: 0 25px 50px -12px hsl(330 91% 65% / 0.25);
   }
 
   .game-card {
@@ -142,7 +165,10 @@
 
   /* Text Effects */
   .text-gradient {
-    @apply bg-gradient-primary bg-clip-text text-transparent;
+    background: linear-gradient(135deg, hsl(330 91% 65%), hsl(340 82% 52%));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
   }
 
   .text-gaming {
