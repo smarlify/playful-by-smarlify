@@ -23,6 +23,9 @@ export default function Home() {
             <div className="mb-8">
               <h1 className="text-5xl md:text-7xl font-bold text-white mb-6">
                 <span className="text-gradient">Playful</span>
+                <small className="block text-2xl md:text-3xl font-normal text-white/60 mt-2">
+                  by Smarlify
+                </small>
               </h1>
               <p className="text-xl md:text-2xl text-gaming max-w-3xl mx-auto mb-8">
                 Experience the ultimate gaming hub with cutting-edge web games built with Three.js, WebGL, and modern web technologies.
@@ -156,19 +159,67 @@ export default function Home() {
       <footer className="py-12 border-t border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <div className="mb-6">
+            <div className="mb-8">
               <h3 className="text-2xl font-bold text-gradient mb-2">Playful</h3>
               <p className="text-gaming">The ultimate gaming hub for web games</p>
             </div>
             
-            <div className="flex flex-wrap justify-center gap-6 text-sm text-muted-foreground mb-6">
-              <span>Built by Smarlify</span>
-              <span>•</span>
-              <span>Powered by Heroku</span>
-              <span>•</span>
-              <span>© 2025 Smarlify.co</span>
+            {/* Credits */}
+            <div className="flex flex-wrap justify-center items-center gap-6 text-sm text-muted-foreground mb-6">
+              <div className="flex items-center gap-2">
+                <span>Designed by</span>
+                <a 
+                  href="https://lovable.dev?utm_source=playful&utm_medium=referral&utm_campaign=footer"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-1 text-white hover:text-primary transition-colors"
+                >
+                  <img src="/lovable-logo.svg" alt="Lovable" className="w-4 h-4" />
+                  Lovable
+                </a>
+              </div>
+              
+              <div className="flex items-center gap-2">
+                <span>Fine-tuned with</span>
+                <a 
+                  href="https://cursor.sh?utm_source=playful&utm_medium=referral&utm_campaign=footer"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-1 text-white hover:text-primary transition-colors"
+                >
+                  <img src="/cursor-logo.svg" alt="Cursor" className="w-4 h-4" />
+                  Cursor
+                </a>
+              </div>
+              
+              <div className="flex items-center gap-2">
+                <span>Powered by</span>
+                <a 
+                  href="https://heroku.com?utm_source=playful&utm_medium=referral&utm_campaign=footer"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-1 text-white hover:text-primary transition-colors"
+                >
+                  <img src="/heroku-logo.svg" alt="Heroku" className="w-4 h-4" />
+                  Heroku
+                </a>
+              </div>
             </div>
-
+            
+            {/* Copyright */}
+            <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground mb-4">
+              <span>©</span>
+              <a 
+                href="https://smarlify.co?utm_source=playful&utm_medium=referral&utm_campaign=footer"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1 text-white hover:text-primary transition-colors"
+              >
+                <img src="/smarlify-white.svg" alt="Smarlify" className="w-4 h-4" />
+                Smarlify.co
+              </a>
+            </div>
+            
             <div className="text-xs text-muted-foreground">
               <p>All games are free to play. No registration required.</p>
             </div>
