@@ -4,9 +4,9 @@ import { getGameById } from '@/data/games';
 import GameIframe from '@/components/GameIframe';
 
 interface GamePageProps {
-  params: {
+  params: Promise<{
     game: string;
-  };
+  }>;
 }
 
 export async function generateMetadata({ params }: GamePageProps): Promise<Metadata> {
