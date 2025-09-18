@@ -58,7 +58,10 @@ export default function Home() {
 
             {/* Featured Game */}
             <div className="max-w-4xl mx-auto">
-              <div className="gaming-card p-8 text-left group">
+              <div 
+                className="gaming-card p-8 text-left group cursor-pointer"
+                onClick={() => handleGameClick(featuredGame.id)}
+              >
                 <div className="flex flex-col md:flex-row gap-6 items-center">
                   <div className="aspect-video w-full md:w-1/2 rounded-xl relative overflow-hidden">
                     <img 
@@ -79,13 +82,10 @@ export default function Home() {
                     </div>
                     <h2 className="text-3xl font-bold text-white mb-3">{featuredGame.name}</h2>
                     <p className="text-gaming mb-4">{featuredGame.description}</p>
-                    <button
-                      onClick={() => handleGameClick(featuredGame.id)}
-                      className="btn-gaming"
-                    >
+                    <div className="btn-gaming inline-flex items-center">
                       <Gamepad2 className="w-5 h-5 inline mr-2" />
                       Play {featuredGame.name}
-                    </button>
+                    </div>
                   </div>
                 </div>
               </div>
