@@ -106,7 +106,11 @@ export default function GameCard({ game, onClick }: GameCardProps) {
           {isComingSoon ? (
             <button 
               disabled
-              className="w-full bg-gray-600/20 text-gray-400 px-4 py-2 rounded-lg font-medium cursor-not-allowed border border-gray-600/30 hover:bg-gray-600/30 transition-all duration-300"
+              className="w-full text-gray-400 px-4 py-2 rounded-lg font-semibold text-lg cursor-not-allowed bg-gray-500/20 border-none inline-flex items-center justify-center"
+              style={{
+                background: 'linear-gradient(135deg, hsl(0 0% 30%), hsl(0 0% 25%))',
+                boxShadow: '0 25px 50px -12px hsl(0 0% 30% / 0.25)'
+              }}
             >
               <Clock className="w-4 h-4 inline mr-2" />
               Coming Soon
