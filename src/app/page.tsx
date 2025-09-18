@@ -202,7 +202,7 @@ export default function Home() {
                 Have an idea for a new game feature? Found a bug? Let us know on GitHub!
               </p>
               <a
-                href="https://github.com/smarlify"
+                href="https://github.com/orgs/smarlify/repositories"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-gaming inline-flex items-center"
@@ -227,7 +227,7 @@ export default function Home() {
                 Help us improve our games by contributing code, fixing bugs, or adding features.
               </p>
               <a
-                href="https://github.com/smarlify"
+                href="https://github.com/orgs/smarlify/repositories"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-gaming inline-flex items-center"
@@ -252,7 +252,7 @@ export default function Home() {
                 Our games are open source with MIT license. Learn from our code and share it with others!
               </p>
               <a
-                href="https://github.com/smarlify"
+                href="https://github.com/orgs/smarlify/repositories"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-gaming inline-flex items-center"
