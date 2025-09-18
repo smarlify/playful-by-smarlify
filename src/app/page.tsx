@@ -164,29 +164,29 @@ export default function Home() {
             </div>
             
             {/* Credits */}
-            <div className="flex flex-wrap justify-center items-center gap-6 text-sm text-muted-foreground mb-6">
+            <div className="flex flex-wrap justify-center items-center gap-6 text-sm text-gray-400 mb-6">
               <div className="flex items-center gap-2">
                 <span>Designed by</span>
                 <a 
                   href="https://lovable.dev?utm_source=playful&utm_medium=referral&utm_campaign=footer"
-            target="_blank"
-            rel="noopener noreferrer"
-                  className="flex items-center gap-1 text-white footer-link group"
-          >
-                  <img src="/lovable-logo.svg" alt="Lovable" className="w-4 h-4 group-hover:scale-110 transition-transform duration-300" />
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-1 text-gray-400 hover:text-pink-500 transition-colors duration-300 group"
+                >
+                  <img src="/lovable-logo.svg" alt="Lovable" className="w-4 h-4 brightness-0 invert group-hover:scale-110 transition-transform duration-300" />
                   Lovable
-          </a>
-        </div>
+                </a>
+              </div>
               
               <div className="flex items-center gap-2">
                 <span>Fine-tuned with</span>
-        <a
+                <a 
                   href="https://cursor.sh?utm_source=playful&utm_medium=referral&utm_campaign=footer"
-          target="_blank"
-          rel="noopener noreferrer"
-                  className="flex items-center gap-1 text-white footer-link group"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-1 text-gray-400 hover:text-pink-500 transition-colors duration-300 group"
                 >
-                  <img src="/cursor-logo.svg" alt="Cursor" className="w-4 h-4 group-hover:scale-110 transition-transform duration-300" />
+                  <img src="/cursor-logo.svg" alt="Cursor" className="w-4 h-4 brightness-0 invert group-hover:scale-110 transition-transform duration-300" />
                   Cursor
                 </a>
               </div>
@@ -197,24 +197,24 @@ export default function Home() {
                   href="https://heroku.com?utm_source=playful&utm_medium=referral&utm_campaign=footer"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-1 text-white footer-link group"
+                  className="flex items-center gap-1 text-gray-400 hover:text-pink-500 transition-colors duration-300 group"
                 >
-                  <img src="/heroku-logo.svg" alt="Heroku" className="w-4 h-4 group-hover:scale-110 transition-transform duration-300" />
+                  <img src="/heroku-logo.svg" alt="Heroku" className="w-4 h-4 brightness-0 invert group-hover:scale-110 transition-transform duration-300" />
                   Heroku
                 </a>
               </div>
             </div>
             
             {/* Copyright */}
-            <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground mb-4">
+            <div className="flex items-center justify-center gap-2 text-sm text-gray-400 mb-4">
               <span>Made by</span>
               <a 
                 href="https://smarlify.co?utm_source=playful&utm_medium=referral&utm_campaign=footer"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-1 text-white footer-link group"
+                className="flex items-center gap-1 text-gray-400 hover:text-pink-500 transition-colors duration-300 group"
               >
-                <img src="/smarlify-white.svg" alt="Smarlify" className="w-4 h-4 group-hover:scale-110 transition-transform duration-300" />
+                <img src="/smarlify-white.svg" alt="Smarlify" className="w-4 h-4 brightness-0 invert group-hover:scale-110 transition-transform duration-300" />
                 Smarlify
               </a>
             </div>
