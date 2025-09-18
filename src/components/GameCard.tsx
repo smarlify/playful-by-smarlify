@@ -13,7 +13,7 @@ export default function GameCard({ game, onClick }: GameCardProps) {
 
   return (
     <div 
-      className={`game-card group ${isComingSoon ? 'opacity-75' : ''} overflow-hidden`}
+      className={`game-card group ${isComingSoon ? 'opacity-75' : ''} overflow-hidden cursor-default`}
     >
       {/* Game Thumbnail */}
       <div className="relative mb-4 overflow-hidden rounded-xl">
