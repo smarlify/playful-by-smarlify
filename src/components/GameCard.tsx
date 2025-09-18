@@ -26,8 +26,8 @@ export default function GameCard({ game, onClick }: GameCardProps) {
             className="w-full h-full object-cover"
           />
           
-          {/* Gradient Overlay */}
-          <div className={`absolute inset-0 ${game.gradient} opacity-30`} />
+          {/* Focus Gradient Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-black/20" />
           
           {/* Coming Soon Overlay */}
           {isComingSoon && (
