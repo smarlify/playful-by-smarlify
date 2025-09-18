@@ -1,8 +1,8 @@
 {
-  "name": "play-smarlify-co",
+  "name": "playful-by-smarlify",
   "version": "1.0.0",
-  "description": "Play.Smarlify.co - Gaming Hub with Dark Luxury Theme",
-  "author": "https://github.com/davidnekovarcz",
+  "description": "Playful by Smarlify",
+  "author": "https://github.com/smarlify",
   "license": "MIT",
   "private": true,
   "scripts": {
