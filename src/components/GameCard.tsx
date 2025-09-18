@@ -1,8 +1,7 @@
 'use client';
 
 import { Game } from '@/types';
-import { Play, Clock, Zap, Star } from 'lucide-react';
-import Image from 'next/image';
+import { Play, Clock, Zap } from 'lucide-react';
 
 interface GameCardProps {
   game: Game;

@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ArrowLeft, Home, Gamepad2 } from 'lucide-react';
+import { Home, Gamepad2 } from 'lucide-react';
 
 export default function NotFound() {
   return (
@@ -19,12 +19,12 @@ export default function NotFound() {
             <h1 className="text-3xl md:text-4xl font-bold text-white mb-4">
               Game Not Found
             </h1>
-            <p className="text-xl text-gaming mb-6">
-              Oops! The game you're looking for doesn't exist or has been moved.
-            </p>
-            <p className="text-muted-foreground">
-              Don't worry, we have plenty of other amazing games waiting for you!
-            </p>
+                    <p className="text-xl text-gaming mb-6">
+                      Oops! The game you&apos;re looking for doesn&apos;t exist or has been moved.
+                    </p>
+                    <p className="text-muted-foreground">
+                      Don&apos;t worry, we have plenty of other amazing games waiting for you!
+                    </p>
           </div>
 
           {/* Action Buttons */}
