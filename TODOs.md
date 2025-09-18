@@ -185,6 +185,11 @@
   - [ ] Show personal best scores
 
 ### 16. Advanced Features
+- [ ] **Play Counter System**
+  - [ ] Track how many people played each game
+  - [ ] Display play counts on game cards
+  - [ ] Real-time counter updates
+  - [ ] Analytics for game popularity
 - [ ] **Achievements System**
   - [ ] Badge collection
   - [ ] Achievement notifications
