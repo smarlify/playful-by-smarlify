@@ -5,6 +5,7 @@ export interface Game {
   shortDescription: string;
   thumbnail: string;
   url: string;
+  githubUrl?: string;
   status: 'published' | 'coming-soon';
   tech: string[];
   features: string[];

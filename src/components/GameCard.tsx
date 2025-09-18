@@ -1,7 +1,7 @@
 'use client';
 
 import { Game } from '@/types';
-import { Play, Clock, Zap } from 'lucide-react';
+import { Play, Clock, Zap, Github } from 'lucide-react';
 
 interface GameCardProps {
   game: Game;
@@ -101,7 +101,7 @@ export default function GameCard({ game, onClick }: GameCardProps) {
           </div>
         </div>
 
-        {/* Action Button */}
+        {/* Action Buttons */}
         <div className="pt-2">
           {isComingSoon ? (
             <button 
@@ -116,10 +116,26 @@ export default function GameCard({ game, onClick }: GameCardProps) {
               Coming Soon
             </button>
           ) : (
-            <button className="w-full btn-gaming group-hover:scale-105 transition-transform">
-              <Play className="w-4 h-4 inline mr-2" />
-              Play Now
-            </button>
+            <div className="flex gap-2">
+              <button 
+                className="w-[40%] btn-gaming group-hover:scale-105 transition-transform"
+                onClick={onClick}
+              >
+                <Play className="w-4 h-4 inline mr-2" />
+                Play Now
+              </button>
+              {game.githubUrl && (
+                <a
+                  href={game.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-[40%] btn-gaming group-hover:scale-105 transition-transform"
+                >
+                  <Github className="w-4 h-4 inline mr-2" />
+                  Contribute
+                </a>
+              )}
+            </div>
           )}
         </div>
       </div>
