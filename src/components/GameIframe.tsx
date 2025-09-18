@@ -36,9 +36,9 @@ export default function GameIframe({ game }: GameIframeProps) {
   };
 
   return (
-    <div className="h-screen bg-background flex flex-col overflow-hidden">
+    <div className="h-screen flex flex-col overflow-hidden">
       {/* Header */}
-      <div className="flex-shrink-0 bg-card/80 backdrop-blur-md border-b border-white/10">
+      <div className="flex-shrink-0 bg-black/50 backdrop-blur-md border-b border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center gap-4">
@@ -54,7 +54,7 @@ export default function GameIframe({ game }: GameIframeProps) {
               
               <div>
                 <h1 className="text-xl font-bold text-white">{game.name}</h1>
-                <p className="text-sm text-muted-foreground">{game.shortDescription}</p>
+                {/* <p className="text-sm text-muted-foreground">{game.shortDescription}</p> */}
               </div>
             </div>
 
