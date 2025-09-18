@@ -45,7 +45,7 @@ export default function GameIframe({ game }: GameIframeProps) {
             <div className="flex items-center gap-4">
               <button
                 onClick={handleBack}
-                className="flex items-center gap-2 text-white/80 hover:text-white transition-colors"
+                className="flex items-center gap-2 text-white/80 hover:text-white transition-colors cursor-pointer"
               >
                 <ArrowLeft className="w-5 h-5" />
                 <span className="hidden sm:inline">Back to Games</span>
@@ -64,7 +64,7 @@ export default function GameIframe({ game }: GameIframeProps) {
               
               <button
                 onClick={handleRefresh}
-                className="flex items-center gap-2 text-white/80 hover:text-white transition-colors"
+                className="flex items-center gap-2 text-white/80 hover:text-white transition-colors cursor-pointer"
               >
                 <RefreshCw className="w-4 h-4" />
                 <span className="hidden sm:inline">Refresh</span>
@@ -74,7 +74,7 @@ export default function GameIframe({ game }: GameIframeProps) {
                 href={game.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 text-white/80 hover:text-white transition-colors"
+                className="flex items-center gap-2 text-white/80 hover:text-white transition-colors cursor-pointer"
               >
                 <ExternalLink className="w-4 h-4" />
                 <span className="hidden sm:inline">Open in New Tab</span>
