@@ -36,9 +36,9 @@ export default function GameIframe({ game }: GameIframeProps) {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="h-screen bg-background flex flex-col overflow-hidden">
       {/* Header */}
-      <div className="sticky top-0 z-50 bg-card/80 backdrop-blur-md border-b border-white/10">
+      <div className="flex-shrink-0 bg-card/80 backdrop-blur-md border-b border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center gap-4">
@@ -81,8 +81,8 @@ export default function GameIframe({ game }: GameIframeProps) {
         </div>
       </div>
 
-      {/* Game Container */}
-      <div className="relative">
+      {/* Game Container - Takes remaining height */}
+      <div className="flex-1 relative">
         {/* Loading State */}
         {isLoading && (
           <div className="absolute inset-0 z-10 flex items-center justify-center bg-card/80 backdrop-blur-md">
@@ -124,35 +124,16 @@ export default function GameIframe({ game }: GameIframeProps) {
           </div>
         )}
 
-        {/* Game Iframe */}
-        <div className="relative w-full h-[calc(100vh-4rem)]">
-          <iframe
-            src={game.url}
-            className="game-iframe w-full h-full"
-            title={game.name}
-            onLoad={handleLoad}
-            onError={handleError}
-            allow="fullscreen; gamepad; microphone; camera"
-            sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-presentation"
-          />
-        </div>
-      </div>
-
-      {/* Game Info Footer */}
-      <div className="bg-card/50 backdrop-blur-sm border-t border-white/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div className="flex flex-wrap items-center justify-between gap-4">
-            <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
-              <span>Tech: {game.tech.join(', ')}</span>
-              <span>•</span>
-              <span>Features: {game.features.slice(0, 2).join(', ')}</span>
-            </div>
-            
-            <div className="flex items-center gap-2 text-sm text-muted-foreground">
-              <span>Powered by Smarlify</span>
-            </div>
-          </div>
-        </div>
+        {/* Game Iframe - Takes full remaining height */}
+        <iframe
+          src={game.url}
+          className="w-full h-full border-0"
+          title={game.name}
+          onLoad={handleLoad}
+          onError={handleError}
+          allow="fullscreen; gamepad; microphone; camera"
+          sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-presentation"
+        />
       </div>
     </div>
   );
