@@ -19,17 +19,19 @@ export default function GameCard({ game, onClick }: GameCardProps) {
       {/* Game Thumbnail */}
       <div className="relative mb-4 overflow-hidden rounded-xl">
         <div className={`aspect-video ${game.gradient} flex items-center justify-center relative`}>
-          {/* isComingSoon ? (
+          {isComingSoon ? (
             <div className="text-center">
               <Clock className="w-16 h-16 mx-auto mb-2 text-white/80" />
-              <p className="text-white/80 font-semibold">Coming Soon</p>
+              <p className="text-white font-semibold">Coming Soon</p>
             </div>
           ) : (
             <div className="text-center">
+              {/*
               <Play className="w-16 h-16 mx-auto mb-2 text-white/80 group-hover:text-white transition-colors" />
               <p className="text-white/80 group-hover:text-white font-semibold transition-colors">Play Now</p>
+              */}
             </div>
-          )*/}
+          )}
           
           {/* Hover Overlay */}
           {!isComingSoon && (
@@ -106,19 +108,19 @@ export default function GameCard({ game, onClick }: GameCardProps) {
           {isComingSoon ? (
             <button 
               disabled
-              className="w-full text-gray-400 px-4 py-2 rounded-lg font-semibold text-lg cursor-not-allowed bg-gray-500/20 border-none inline-flex items-center justify-center"
+              className="w-full text-white px-3 py-2 rounded-lg font-semibold text-sm cursor-not-allowed bg-gray-300/20 border-none inline-flex items-center justify-center"
               style={{
                 background: 'linear-gradient(135deg, hsl(0 0% 30%), hsl(0 0% 25%))',
                 boxShadow: '0 25px 50px -12px hsl(0 0% 30% / 0.25)'
               }}
             >
-              <Clock className="w-4 h-4 inline mr-2" />
+              <Clock className="w-3 h-3 inline mr-1" />
               Coming Soon
             </button>
           ) : (
             <div className="flex gap-4">
               <button 
-                className="w-[35%] text-white px-3 py-2 rounded-lg font-semibold text-sm cursor-pointer bg-gray-500/20 border-none inline-flex items-center justify-center transition-all duration-300 hover:scale-105"
+                className="w-[30%] text-white px-3 py-2 rounded-lg font-semibold text-sm cursor-pointer bg-gray-500/20 border-none inline-flex items-center justify-center transition-all duration-300 hover:scale-105"
                 style={{
                   background: 'linear-gradient(135deg, hsl(330 91% 65%), hsl(340 82% 52%))',
                   boxShadow: '0 10px 25px -5px hsl(330 91% 65% / 0.25)'
@@ -133,7 +135,7 @@ export default function GameCard({ game, onClick }: GameCardProps) {
                   href={game.githubUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-[35%] text-white px-3 py-2 rounded-lg font-semibold text-sm cursor-pointer border-none inline-flex items-center justify-center transition-all duration-300 hover:scale-105"
+                  className="w-[40%] text-white px-3 py-2 rounded-lg font-semibold text-sm cursor-pointer border-none inline-flex items-center justify-center transition-all duration-300 hover:scale-105"
                   style={{
                     background: 'linear-gradient(135deg, hsl(0 0% 20%), hsl(0 0% 15%))',
                     boxShadow: '0 10px 25px -5px hsl(0 0% 20% / 0.25)'
@@ -141,7 +143,7 @@ export default function GameCard({ game, onClick }: GameCardProps) {
                   onClick={(e) => e.stopPropagation()}
                 >
                   <Github className="w-3 h-3 inline mr-1" />
-                  Contribute
+                  Contribute on GitHub
                 </a>
               )}
             </div>
