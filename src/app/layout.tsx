@@ -103,8 +103,8 @@ export default function RootLayout({
         />
         {/* Umami Analytics */}
         <Script
-          src="https://umami.smarlify.co/script.js"
-          data-website-id="your-website-id"
+          src="https://cloud.umami.is/script.js"
+          data-website-id="83e255ad-387c-4a7d-90af-8b5787fc38bb"
           strategy="afterInteractive"
         />
       </head>
