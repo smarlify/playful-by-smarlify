@@ -27,7 +27,8 @@ export default function Home() {
                 <span className="inline-block rotate-1 text-3xl md:text-5xl text-gradient">Smarlify</span>
               </h1>
               <p className="text-xl md:text-2xl text-gaming max-w-3xl mx-auto mb-8">
-                Experience the ultimate gaming hub with cutting-edge web games built with Three.js, WebGL, and modern web technologies.
+                Experience the ultimate gaming hub with cutting-edge games<br />
+                built with Three.js, WebGL, Unity 3D and other.
               </p>
             </div>
 
@@ -92,10 +93,9 @@ export default function Home() {
               Choose Your <span className="text-gradient">Adventure</span>
             </h2>
             <p className="text-xl text-gaming max-w-2xl mx-auto">
-              From high-speed racing to endless running, discover our collection of premium web games.
+              From high-speed racing to endless running and dodging, discover our collection of premium games.
             </p>
           </div>
-
           <div className="games-grid">
             {games.map((game) => (
               <GameCard
@@ -116,7 +116,7 @@ export default function Home() {
               Why Choose <span className="text-gradient">Our Games</span>
             </h2>
             <p className="text-xl text-gaming max-w-2xl mx-auto">
-              Built with cutting-edge web technologies for the best gaming experience.
+              Built with cutting-edge technologies for the best gaming experience.
             </p>
           </div>
 
@@ -159,8 +159,12 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <div className="mb-8">
-              <h3 className="text-2xl font-bold text-gradient mb-2">Playful</h3>
-              <p className="text-gaming">The ultimate gaming hub for web games</p>
+              <h3 className="text-2xl font-bold text-white mb-2">
+                <span className="inline-block -rotate-1 text-3xl md:text-4xl">Playful</span>
+                <span className="inline-block rotate-0 text-lg md:text-xl px-3 -top-1 relative opacity-50">by</span>
+                <span className="inline-block rotate-1 text-2xl md:text-3xl text-gradient">Smarlify</span>
+              </h3>
+              <p className="text-gray-200">The ultimate gaming hub for modern games</p>
             </div>
             
             {/* Credits */}
@@ -171,7 +175,7 @@ export default function Home() {
                   href="https://lovable.dev?utm_source=playful&utm_medium=referral&utm_campaign=footer"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-1 text-gray-400 hover:text-pink-500 transition-colors duration-300 group"
+                  className="flex items-center gap-1 text-gray-200 hover:text-pink-500 transition-colors duration-300 group"
                 >
                   <img src="/lovable-logo.svg" alt="Lovable" className="w-4 h-4 brightness-0 invert group-hover:scale-110 transition-transform duration-300" />
                   Lovable
@@ -184,7 +188,7 @@ export default function Home() {
                   href="https://cursor.sh?utm_source=playful&utm_medium=referral&utm_campaign=footer"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-1 text-gray-400 hover:text-pink-500 transition-colors duration-300 group"
+                  className="flex items-center gap-1 text-gray-200 hover:text-pink-500 transition-colors duration-300 group"
                 >
                   <img src="/cursor-logo.svg" alt="Cursor" className="w-4 h-4 brightness-0 invert group-hover:scale-110 transition-transform duration-300" />
                   Cursor
@@ -197,7 +201,7 @@ export default function Home() {
                   href="https://heroku.com?utm_source=playful&utm_medium=referral&utm_campaign=footer"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-1 text-gray-400 hover:text-pink-500 transition-colors duration-300 group"
+                  className="flex items-center gap-1 text-gray-200 hover:text-pink-500 transition-colors duration-300 group"
                 >
                   <img src="/heroku-logo.svg" alt="Heroku" className="w-4 h-4 brightness-0 invert group-hover:scale-110 transition-transform duration-300" />
                   Heroku
@@ -206,21 +210,24 @@ export default function Home() {
             </div>
             
             {/* Copyright */}
-            <div className="flex items-center justify-center gap-2 text-sm text-gray-400 mb-4">
-              <span>Made by</span>
-              <a 
-                href="https://smarlify.co?utm_source=playful&utm_medium=referral&utm_campaign=footer"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-1 text-gray-400 hover:text-pink-500 transition-colors duration-300 group"
-              >
-                <img src="/smarlify-white.svg" alt="Smarlify" className="w-4 h-4 brightness-0 invert group-hover:scale-110 transition-transform duration-300" />
-                Smarlify
-              </a>
-            </div>
+            {/*
+              <div className="flex items-center justify-center gap-2 text-sm text-gray-400 mb-4">
+                <span>Made by</span>
+                <a 
+                  href="https://smarlify.co?utm_source=playful&utm_medium=referral&utm_campaign=footer"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-1 text-gray-400 hover:text-pink-500 transition-colors duration-300 group"
+                >
+                  <img src="/smarlify-white.svg" alt="Smarlify" className="w-4 h-4 brightness-0 invert group-hover:scale-110 transition-transform duration-300" />
+                  Smarlify
+                </a>
+              </div>
+            */}
             
-            <div className="text-xs text-muted-foreground">
+            <div className="text-xs text-gray-400">
               <p>All games are free to play. No registration required.</p>
+              <p className='mt-2'>&copy; {new Date().getFullYear()} Smarlify.co. All rights reserved.</p>
             </div>
           </div>
         </div>
