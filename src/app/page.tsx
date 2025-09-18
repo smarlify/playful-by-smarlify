@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Gamepad2, Zap, Star, Trophy, Users, Github, Copy, Check, BookOpen, GitPullRequest, Lightbulb, Plus, Briefcase } from 'lucide-react';
+import { Gamepad2, Zap, Star, Trophy, Users, Copy, Check, BookOpen, GitPullRequest, Lightbulb, Plus, Briefcase } from 'lucide-react';
 import GameCard from '@/components/GameCard';
 import { games } from '@/data/games';
 
@@ -132,6 +132,7 @@ export default function Home() {
       </section>
 
       {/* Features Section */}
+      {/*
       <section className="py-20 bg-card/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -176,6 +177,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+      */}
 
       {/* Participate Section */}
       <section className="py-20">
@@ -338,7 +340,7 @@ export default function Home() {
               </div>
               <h3 className="text-xl font-bold text-white mb-4">Add Your Game</h3>
               <p className="text-gaming mb-6">
-                Have an online game you'd like to showcase? We'd love to feature it on our platform!
+                Have an online game you&apos;d like to showcase? We&apos;d love to feature it on our platform!
               </p>
               <a
                 href="mailto:dave@smarlify.co?subject=Game Submission"
