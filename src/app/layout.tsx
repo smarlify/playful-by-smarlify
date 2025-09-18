@@ -72,7 +72,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${inter.variable} font-sans antialiased`}
+        className={`${inter.variable} font-sans antialiased gaming-bg`}
       >
         {children}
       </body>

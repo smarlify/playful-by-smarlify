@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Play, Zap, Star, Gamepad2, Trophy, Users } from 'lucide-react';
+import { Gamepad2, Zap, Star, Trophy, Users } from 'lucide-react';
 import GameCard from '@/components/GameCard';
 import { games } from '@/data/games';
 
@@ -61,7 +61,7 @@ export default function Home() {
               <div className="gaming-card p-8 text-left">
                 <div className="flex flex-col md:flex-row gap-6 items-center">
                   <div className={`aspect-video w-full md:w-1/2 ${featuredGame.gradient} rounded-xl flex items-center justify-center`}>
-                    <Play className="w-16 h-16 text-white/80" />
+                    <Gamepad2 className="w-16 h-16 text-white/80" />
                   </div>
                   <div className="flex-1">
                     <div className="flex items-center gap-2 mb-2">
@@ -74,7 +74,7 @@ export default function Home() {
                       onClick={() => handleGameClick(featuredGame.id)}
                       className="btn-gaming"
                     >
-                      <Play className="w-5 h-5 inline mr-2" />
+                      <Gamepad2 className="w-5 h-5 inline mr-2" />
                       Play {featuredGame.name}
                     </button>
                   </div>

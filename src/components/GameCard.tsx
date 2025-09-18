@@ -1,7 +1,7 @@
 'use client';
 
 import { Game } from '@/types';
-import { Play, Clock, Zap, Github } from 'lucide-react';
+import { Gamepad2, Clock, Zap, Github } from 'lucide-react';
 
 interface GameCardProps {
   game: Game;
@@ -33,14 +33,14 @@ export default function GameCard({ game, onClick }: GameCardProps) {
             </div>
           )}
           
-          {/* Hover Overlay */}
-          {!isComingSoon && (
-            <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-              <div className="bg-white/20 backdrop-blur-sm rounded-full p-4">
-                <Play className="w-8 h-8 text-white" />
-              </div>
-            </div>
-          )}
+                  {/* Hover Overlay */}
+                  {!isComingSoon && (
+                    <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                      <div className="bg-white/20 backdrop-blur-sm rounded-full p-4">
+                        <Gamepad2 className="w-8 h-8 text-white" />
+                      </div>
+                    </div>
+                  )}
         </div>
         
         {/* Status Badge */}
@@ -127,8 +127,8 @@ export default function GameCard({ game, onClick }: GameCardProps) {
                 }}
                 onClick={onClick}
               >
-                <Play className="w-3 h-3 inline mr-1" />
-                Play {game.name}
+                        <Gamepad2 className="w-3 h-3 inline mr-1" />
+                        Play {game.name}
               </button>
               {game.githubUrl && (
                 <a
