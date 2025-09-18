@@ -7,10 +7,9 @@ import { useRouter } from 'next/navigation';
 
 interface GameIframeProps {
   game: Game;
-  onBack: () => void;
 }
 
-export default function GameIframe({ game, onBack }: GameIframeProps) {
+export default function GameIframe({ game }: GameIframeProps) {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);

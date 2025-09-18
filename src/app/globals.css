@@ -15,14 +15,29 @@
   --muted-foreground: 215 20% 65%;
 }
 
+/* Ensure dark background is applied */
+html, body {
+  background: hsl(221 84% 5%) !important;
+  background-color: hsl(221 84% 5%) !important;
+  color: hsl(0 0% 98%) !important;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+/* Override any potential white backgrounds */
+html, body, #__next, main, div {
+  background-color: hsl(221 84% 5%) !important;
+}
+
 * {
   box-sizing: border-box;
   border-color: rgba(255, 255, 255, 0.1);
 }
 
 body {
-  background: linear-gradient(135deg, hsl(221 84% 5%), hsl(221 39% 11%));
-  color: hsl(0 0% 98%);
+  background: linear-gradient(135deg, hsl(221 84% 5%), hsl(221 39% 11%)) !important;
+  color: hsl(0 0% 98%) !important;
   font-weight: 300;
   min-height: 100vh;
   margin: 0;
@@ -34,8 +49,26 @@ body {
 .gaming-bg {
   background: radial-gradient(circle at 20% 80%, rgba(236, 72, 153, 0.1) 0%, transparent 50%),
               radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
-              radial-gradient(circle at 40% 40%, rgba(245, 158, 11, 0.05) 0%, transparent 50%);
+              radial-gradient(circle at 40% 40%, rgba(245, 158, 11, 0.05) 0%, transparent 50%),
+              linear-gradient(135deg, hsl(221 84% 5%), hsl(221 39% 11%));
   animation: gaming-morph 20s ease-in-out infinite;
+  min-height: 100vh;
+}
+
+/* Ensure all main containers have dark background */
+#__next, main, .min-h-screen, body > div, html {
+  background: hsl(221 84% 5%) !important;
+  color: hsl(0 0% 98%) !important;
+}
+
+/* Force dark background on all elements */
+* {
+  background-color: transparent;
+}
+
+body, html, #__next, main, .min-h-screen {
+  background: hsl(221 84% 5%) !important;
+  background-color: hsl(221 84% 5%) !important;
 }
 
 @keyframes gaming-morph {

@@ -55,5 +55,5 @@ export default async function GamePage({ params }: GamePageProps) {
     notFound();
   }
 
-  return <GameIframe game={game} onBack={() => {}} />;
+  return <GameIframe game={game} />;
 }
