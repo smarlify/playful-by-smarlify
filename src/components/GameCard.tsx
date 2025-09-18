@@ -13,17 +13,16 @@ export default function GameCard({ game, onClick }: GameCardProps) {
 
   return (
     <div 
-      className={`game-card group ${isComingSoon ? 'opacity-75' : ''} overflow-hidden cursor-default`}
+      className={`game-card group ${isComingSoon ? 'opacity-75' : ''} overflow-hidden`}
     >
       {/* Game Thumbnail */}
-      <div className="relative mb-4 overflow-hidden rounded-xl">
+      <div className="relative mb-4 overflow-hidden rounded-xl cursor-pointer" onClick={isComingSoon ? undefined : onClick}>
         <div className="aspect-video relative">
           {/* Game Screenshot */}
           <img 
             src={game.thumbnail} 
             alt={game.name}
             className="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-300 cursor-pointer"
-            onClick={isComingSoon ? undefined : onClick}
           />
           
           {/* Coming Soon Overlay */}
