@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Gamepad2, Zap, Star, Trophy, Users, Github, Copy, Check } from 'lucide-react';
+import { Gamepad2, Zap, Star, Trophy, Users, Github, Copy, Check, BookOpen, GitPullRequest, Lightbulb, Plus, Briefcase } from 'lucide-react';
 import GameCard from '@/components/GameCard';
 import { games } from '@/data/games';
 
@@ -192,8 +192,8 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {/* Request Features / Report Bugs */}
             <div className="gaming-card p-6 text-center group">
-              <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Zap className="w-8 h-8 text-primary" />
+              <div className="w-16 h-16 bg-yellow-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                <Lightbulb className="w-8 h-8 text-yellow-500" />
               </div>
               <h3 className="text-xl font-bold text-white mb-4">Request Feature</h3>
               <p className="text-gaming mb-6">
@@ -204,16 +204,21 @@ export default function Home() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-gaming inline-flex items-center"
+                style={{
+                  background: 'linear-gradient(135deg, #059669, #047857)',
+                  color: '#ffffff',
+                  boxShadow: '0 10px 25px -5px #059669 / 0.25'
+                }}
               >
-                <Zap className="w-4 h-4 mr-2" />
+                <Lightbulb className="w-4 h-4 mr-2" />
                 Create Issue
               </a>
             </div>
 
             {/* Contribute */}
             <div className="gaming-card p-6 text-center group">
-              <div className="w-16 h-16 bg-secondary/20 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Github className="w-8 h-8 text-secondary" />
+              <div className="w-16 h-16 bg-gray-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                <GitPullRequest className="w-8 h-8 text-gray-400" />
               </div>
               <h3 className="text-xl font-bold text-white mb-4">Contribute</h3>
               <p className="text-gaming mb-6">
@@ -224,16 +229,21 @@ export default function Home() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-gaming inline-flex items-center"
+                style={{
+                  background: 'linear-gradient(135deg, #6b7280, #4b5563)',
+                  color: '#ffffff',
+                  boxShadow: '0 10px 25px -5px #6b7280 / 0.25'
+                }}
               >
-                <Github className="w-4 h-4 mr-2" />
+                <GitPullRequest className="w-4 h-4 mr-2" />
                 Make PR
               </a>
             </div>
 
             {/* Learn & Share */}
             <div className="gaming-card p-6 text-center group">
-              <div className="w-16 h-16 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Trophy className="w-8 h-8 text-accent" />
+              <div className="w-16 h-16 bg-cyan-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                <BookOpen className="w-8 h-8 text-cyan-500" />
               </div>
               <h3 className="text-xl font-bold text-white mb-4">Learn & Share</h3>
               <p className="text-gaming mb-6">
@@ -244,8 +254,13 @@ export default function Home() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-gaming inline-flex items-center"
+                style={{
+                  background: 'linear-gradient(135deg, #0891b2, #0e7490)',
+                  color: '#ffffff',
+                  boxShadow: '0 10px 25px -5px #0891b2 / 0.25'
+                }}
               >
-                <Trophy className="w-4 h-4 mr-2" />
+                <BookOpen className="w-4 h-4 mr-2" />
                 View Source
               </a>
             </div>
@@ -293,26 +308,33 @@ export default function Home() {
 
             {/* Hire Us */}
             <div className="gaming-card p-6 text-center group">
-              <div className="w-16 h-16 bg-purple-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
-                <span className="text-2xl">💼</span>
+              <div className="w-16 h-16 bg-pink-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                <Briefcase className="w-8 h-8 text-pink-500" />
               </div>
               <h3 className="text-xl font-bold text-white mb-4">Hire Us</h3>
               <p className="text-gaming mb-6">
                 Need a game built? We create amazing gaming experiences tailored to your needs.
               </p>
               <a
-                href="mailto:dave@smarlify.co?subject=Game Development Inquiry"
+                href="https://smarlify.co?utm_source=playful&utm_medium=referral&utm_campaign=hire_us"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="btn-gaming inline-flex items-center"
+                style={{
+                  background: 'linear-gradient(135deg, #ec4899, #be185d)',
+                  color: '#ffffff',
+                  boxShadow: '0 10px 25px -5px #ec4899 / 0.25'
+                }}
               >
-                <span className="mr-2">💼</span>
+                <Briefcase className="w-4 h-4 mr-2" />
                 Contact Us
               </a>
             </div>
 
             {/* Add Your Game */}
             <div className="gaming-card p-6 text-center group">
-              <div className="w-16 h-16 bg-pink-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
-                <span className="text-2xl">🎮</span>
+              <div className="w-16 h-16 bg-purple-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                <Plus className="w-8 h-8 text-purple-500" />
               </div>
               <h3 className="text-xl font-bold text-white mb-4">Add Your Game</h3>
               <p className="text-gaming mb-6">
@@ -321,8 +343,13 @@ export default function Home() {
               <a
                 href="mailto:dave@smarlify.co?subject=Game Submission"
                 className="btn-gaming inline-flex items-center"
+                style={{
+                  background: 'linear-gradient(135deg, #a855f7, #9333ea)',
+                  color: '#ffffff',
+                  boxShadow: '0 10px 25px -5px #a855f7 / 0.25'
+                }}
               >
-                <span className="mr-2">🎮</span>
+                <Plus className="w-4 h-4 mr-2" />
                 Submit Game
               </a>
             </div>
