@@ -253,9 +253,9 @@
 ---
 
 ## 🎮 Game URLs (Confirmed & Updated)
-- Traffic Run: `https://three-js-traffic-run.herokuapp.com/`
-- Crossy Road: `https://three-js-crossy-road.herokuapp.com/`
-- Space Shooter: `https://js-space-shooter.herokuapp.com/`
+- Traffic Run: `https://traffic-run-50a7914ff3f5.herokuapp.com/`
+- Crossy Road: `https://crossy-road-adeb791dac1a.herokuapp.com/`
+- Space Shooter: `https://space-shooter-2d-ab0c1ab2cfd8.herokuapp.com/`
 - Crazy Vacuum 3D: `#` (Coming Soon)
 
 ## 📞 Next Steps
