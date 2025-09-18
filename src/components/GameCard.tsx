@@ -1,7 +1,7 @@
 'use client';
 
 import { Game } from '@/types';
-import { Gamepad2, Clock, Zap, Github } from 'lucide-react';
+import { Gamepad2, Clock, Zap, Github, Star } from 'lucide-react';
 
 interface GameCardProps {
   game: Game;
@@ -10,6 +10,29 @@ interface GameCardProps {
 
 export default function GameCard({ game, onClick }: GameCardProps) {
   const isComingSoon = game.status === 'coming-soon';
+  
+  // Calculate stars dynamically based on project start date
+  const calculateStars = (startDate: string, divisor: number = 10): number => {
+    const start = new Date(startDate);
+    const now = new Date();
+    const diffTime = Math.abs(now.getTime() - start.getTime());
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    
+    // Use custom divisor for each game
+    const stars = Math.floor(diffDays / divisor);
+    return Math.max(stars, 1); // Minimum 1 star
+  };
+  
+  // Different divisors for each game
+  const getDivisor = (gameId: string): number => {
+    switch (gameId) {
+      case 'space-shooter': return 50;
+      case 'traffic-run': return 15;
+      default: return 10;
+    }
+  };
+  
+  const dynamicStars = game.publishedDate ? calculateStars(game.publishedDate, getDivisor(game.id)) : 0;
 
   return (
     <div 
@@ -62,9 +85,19 @@ export default function GameCard({ game, onClick }: GameCardProps) {
       {/* Game Info */}
       <div className="space-y-3">
         <div>
-          <h3 className="text-xl font-bold text-white mb-2 group-hover:text-gradient transition-colors">
-            {game.name}
-          </h3>
+          <div className="flex items-center gap-4 mb-2">
+            <h3 className="text-xl font-bold text-white group-hover:text-gradient transition-colors">
+              {game.name}
+            </h3>
+            {dynamicStars > 0 && (
+              <div className="flex items-center gap-1">
+                <Star className="w-4 h-4 text-yellow-400 fill-current" />
+                <span className="bg-yellow-400/20 text-yellow-400 text-xs font-medium px-2 py-1 rounded-full">
+                  {dynamicStars}
+                </span>
+              </div>
+            )}
+          </div>
           <p className="text-muted-foreground text-sm leading-relaxed">
             {game.shortDescription}
           </p>

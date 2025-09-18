@@ -13,7 +13,8 @@ export const games: Game[] = [
     tech: ['React Three Fiber', 'Zustand', 'TypeScript'],
     features: ['Endless Gameplay', 'Coin Collection', 'Obstacle Avoidance', 'High Scores'],
     color: 'from-blue-500 to-cyan-600',
-    gradient: 'bg-gradient-to-br from-blue-500 to-cyan-600'
+    gradient: 'bg-gradient-to-br from-blue-500 to-cyan-600',
+    publishedDate: '2024-06-01'
   },
   {
     id: 'traffic-run',
@@ -27,7 +28,8 @@ export const games: Game[] = [
     tech: ['Three.js', 'TypeScript', 'WebGL'],
     features: ['3D Graphics', 'Realistic Physics', 'Multiple Levels', 'Score System'],
     color: 'from-pink-500 to-rose-600',
-    gradient: 'bg-gradient-to-br from-pink-500 to-rose-600'
+    gradient: 'bg-gradient-to-br from-pink-500 to-rose-600',
+    publishedDate: '2024-07-01'
   },
   {
     id: 'space-shooter',
@@ -41,7 +43,8 @@ export const games: Game[] = [
     tech: ['WebGL', 'Vanilla JS', 'Three.js'],
     features: ['2D Graphics', 'Wave-based Gameplay', 'Power-ups', 'Boss Battles'],
     color: 'from-purple-500 to-indigo-600',
-    gradient: 'bg-gradient-to-br from-purple-500 to-indigo-600'
+    gradient: 'bg-gradient-to-br from-purple-500 to-indigo-600',
+    publishedDate: '2024-04-01'
   },
   {
     id: 'crazy-vacuum-3d',

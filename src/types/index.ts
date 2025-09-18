@@ -11,6 +11,7 @@ export interface Game {
   features: string[];
   color: string;
   gradient: string;
+  publishedDate?: string;
 }
 
 export interface GameCardProps {
