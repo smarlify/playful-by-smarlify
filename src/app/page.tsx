@@ -21,9 +21,10 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <div className="text-center">
             <div className="mb-8">
-              <h1 className="text-5xl md:text-7xl font-bold text-white mb-6">
-                <span className="text-white">Playful</span>
-                <span className="text-gradient"> by Smarlify</span>
+              <h1 className="mb-6 text-white font-bold">
+                <span className="inline-block -rotate-1 text-5xl md:text-7xl">Playful</span>
+                <span className="inline-block rotate-0 text-2xl md:text-3xl px-4 -top-1 -right-1 relative opacity-50">by</span>
+                <span className="inline-block rotate-1 text-3xl md:text-5xl text-gradient">Smarlify</span>
               </h1>
               <p className="text-xl md:text-2xl text-gaming max-w-3xl mx-auto mb-8">
                 Experience the ultimate gaming hub with cutting-edge web games built with Three.js, WebGL, and modern web technologies.
