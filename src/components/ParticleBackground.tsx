@@ -59,36 +59,37 @@ export default function ParticleBackground() {
       canvas.style.height = '100%';
     };
 
-    // Create particles
+    // Create particles only once
     const createParticles = () => {
-      particlesRef.current = [];
-      for (let i = 0; i < numParticles; i++) {
-        const size = Math.random() * 6 + 2;
-        const x = Math.random() * canvas.width;
-        const y = Math.random() * canvas.height;
-        const speedX = (Math.random() - 0.5) * 1.5;
-        const speedY = (Math.random() - 0.5) * 1.5;
-        const color = colors[Math.floor(Math.random() * colors.length)];
-        const opacity = Math.random() * 0.3 + 0.1;
-        const sparkle = Math.random() < 0.1; // 10% chance to sparkle
-        const shape = shapes[Math.floor(Math.random() * shapes.length)];
-        const rotation = Math.random() * Math.PI * 2;
-        const rotationSpeed = (Math.random() - 0.5) * 0.1;
+      if (particlesRef.current.length === 0) {
+        for (let i = 0; i < numParticles; i++) {
+          const size = Math.random() * 6 + 2;
+          const x = Math.random() * canvas.width;
+          const y = Math.random() * canvas.height;
+          const speedX = (Math.random() - 0.5) * 1.5;
+          const speedY = (Math.random() - 0.5) * 1.5;
+          const color = colors[Math.floor(Math.random() * colors.length)];
+          const opacity = Math.random() * 0.3 + 0.1;
+          const sparkle = Math.random() < 0.1; // 10% chance to sparkle
+          const shape = shapes[Math.floor(Math.random() * shapes.length)];
+          const rotation = Math.random() * Math.PI * 2;
+          const rotationSpeed = (Math.random() - 0.5) * 0.1;
 
-        particlesRef.current.push({
-          x,
-          y,
-          size,
-          speedX,
-          speedY,
-          color,
-          opacity,
-          sparkle,
-          sparkleTimer: 0,
-          shape,
-          rotation,
-          rotationSpeed,
-        });
+          particlesRef.current.push({
+            x,
+            y,
+            size,
+            speedX,
+            speedY,
+            color,
+            opacity,
+            sparkle,
+            sparkleTimer: 0,
+            shape,
+            rotation,
+            rotationSpeed,
+          });
+        }
       }
     };
 
@@ -99,13 +100,21 @@ export default function ParticleBackground() {
       particle.rotation += particle.rotationSpeed;
 
       // Bounce off edges
-      if (particle.x < 0 || particle.x > canvas.width) {
-        particle.speedX *= -1;
-        particle.x = Math.max(0, Math.min(canvas.width, particle.x));
+      if (particle.x < 0) {
+        particle.speedX = Math.abs(particle.speedX);
+        particle.x = 0;
       }
-      if (particle.y < 0 || particle.y > canvas.height) {
-        particle.speedY *= -1;
-        particle.y = Math.max(0, Math.min(canvas.height, particle.y));
+      if (particle.x > canvas.width) {
+        particle.speedX = -Math.abs(particle.speedX);
+        particle.x = canvas.width;
+      }
+      if (particle.y < 0) {
+        particle.speedY = Math.abs(particle.speedY);
+        particle.y = 0;
+      }
+      if (particle.y > canvas.height) {
+        particle.speedY = -Math.abs(particle.speedY);
+        particle.y = canvas.height;
       }
 
       // Update sparkle effect
@@ -193,7 +202,13 @@ export default function ParticleBackground() {
     // Handle resize
     const handleResize = () => {
       resizeCanvas();
-      createParticles();
+      // Adjust particle positions if they're outside the new canvas bounds
+      particlesRef.current.forEach(particle => {
+        if (particle.x > canvas.width) particle.x = canvas.width;
+        if (particle.y > canvas.height) particle.y = canvas.height;
+        if (particle.x < 0) particle.x = 0;
+        if (particle.y < 0) particle.y = 0;
+      });
     };
 
     window.addEventListener('resize', handleResize);
