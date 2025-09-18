@@ -22,10 +22,8 @@ export default function Home() {
           <div className="text-center">
             <div className="mb-8">
               <h1 className="text-5xl md:text-7xl font-bold text-white mb-6">
-                <span className="text-gradient">Playful</span>
-                <small className="block text-2xl md:text-3xl font-normal text-white/60 mt-2">
-                  by Smarlify
-                </small>
+                <span className="text-white">Playful</span>
+                <span className="text-gradient"> by Smarlify</span>
               </h1>
               <p className="text-xl md:text-2xl text-gaming max-w-3xl mx-auto mb-8">
                 Experience the ultimate gaming hub with cutting-edge web games built with Three.js, WebGL, and modern web technologies.
