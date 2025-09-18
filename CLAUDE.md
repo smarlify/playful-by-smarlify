@@ -2,7 +2,7 @@
 
 ## 🎮 Project Overview
 
-A centralized gaming hub at `play.smarlify.co` featuring a dark, luxury-themed interface inspired by DavidNekovar.cz. The platform will host 4 games with iframe integration, user authentication via Firebase, and a global scoreboard system.
+A centralized gaming hub at `playful.smarlify.co` featuring a dark, luxury-themed interface inspired by DavidNekovar.cz. The platform will host 4 games with iframe integration, user authentication via Firebase, and a global scoreboard system.
 
 ## 🎯 Core Features
 
@@ -11,7 +11,7 @@ A centralized gaming hub at `play.smarlify.co` featuring a dark, luxury-themed i
 - **Game showcase** with 3 published games + 1 "Coming Soon"
 - **Iframe integration** for seamless game embedding
 - **Responsive design** with modern UI/UX
-- **Game routing**: `play.smarlify.co/{game}` structure
+- **Game routing**: `playful.smarlify.co/{game}` structure
 
 ### Phase 2: User Authentication & Scoring
 - **Firebase integration** with SSO (Google, Facebook, LinkedIn)
@@ -24,23 +24,23 @@ A centralized gaming hub at `play.smarlify.co` featuring a dark, luxury-themed i
 
 ### Published Games (Phase 1)
 1. **Traffic Run** - 2.5D Racing Game
-   - URL: `play.smarlify.co/traffic-run`
+   - URL: `playful.smarlify.co/traffic-run`
    - Tech: Three.js, TypeScript, Vite
    - Heroku deployment ready
 
 2. **Crossy Road** - 2.5D Runner Game  
-   - URL: `play.smarlify.co/crossy-road`
+   - URL: `playful.smarlify.co/crossy-road`
    - Tech: React Three Fiber, Zustand, TypeScript
    - Heroku deployment ready
 
 3. **Space Shooter** - 2D WebGL Game
-   - URL: `play.smarlify.co/space-shooter`
+   - URL: `playful.smarlify.co/space-shooter`
    - Tech: Vanilla JS, WebGL, Three.js
    - Heroku deployment ready
 
 ### Coming Soon (Phase 1)
 4. **Crazy Vacuum 3D** - 3D Game
-   - URL: `play.smarlify.co/crazy-vacuum-3d`
+   - URL: `playful.smarlify.co/crazy-vacuum-3d`
    - Status: "Coming Soon" placeholder
    - Future integration ready
 
@@ -153,10 +153,10 @@ _Play.Smarlify.co/
 ## 🔧 Configuration Requirements
 
 ### DNS Setup
-- `play.smarlify.co` → Main hub (Next.js app)
-- `traffic-run.play.smarlify.co` → Traffic Run game
-- `crossy-road.play.smarlify.co` → Crossy Road game  
-- `space-shooter.play.smarlify.co` → Space Shooter game
+- `playful.smarlify.co` → Main hub (Next.js app)
+- `traffic-run.playful.smarlify.co` → Traffic Run game
+- `crossy-road.playful.smarlify.co` → Crossy Road game  
+- `space-shooter.playful.smarlify.co` → Space Shooter game
 
 ### Repository & Deployment
 - **GitHub**: `git@github.com:davidnekovarcz/play-smarlify-co.git`

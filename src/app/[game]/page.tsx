@@ -15,34 +15,72 @@ export async function generateMetadata({ params }: GamePageProps): Promise<Metad
   
   if (!game) {
     return {
-      title: 'Game Not Found - Playful',
-      description: 'The requested game could not be found.',
+      title: 'Game Not Found - Playful by Smarlify',
+      description: 'The requested game could not be found on our gaming hub.',
     };
   }
 
+  const gameUrl = `https://playful.smarlify.co/${game.id}`;
+  const fullTitle = `${game.name} - Play Online | Playful by Smarlify`;
+
   return {
-    title: `${game.name} - Playful`,
-    description: game.description,
-    keywords: [game.name, ...game.tech, 'web game', 'browser game', 'Smarlify', 'Playful'],
+    title: fullTitle,
+    description: `${game.description} Play ${game.name} for free in your browser. Built with ${game.tech.join(', ')}.`,
+    keywords: [
+      game.name,
+      ...game.tech,
+      'web game',
+      'browser game',
+      'online game',
+      'free game',
+      'Smarlify',
+      'Playful',
+      'play online',
+      'gaming hub',
+      ...game.features
+    ],
+    authors: [{ name: "Smarlify", url: "https://github.com/smarlify" }],
+    creator: "Smarlify",
+    publisher: "Smarlify",
+    metadataBase: new URL("https://playful.smarlify.co"),
+    alternates: {
+      canonical: gameUrl,
+    },
     openGraph: {
-      title: `${game.name} - Playful`,
-      description: game.description,
+      title: fullTitle,
+      description: `${game.description} Play ${game.name} for free in your browser.`,
       type: 'website',
-      url: `https://play.smarlify.co/${game.id}`,
+      url: gameUrl,
+      siteName: 'Playful by Smarlify',
+      locale: 'en_US',
       images: [
         {
           url: game.thumbnail,
           width: 1200,
           height: 630,
-          alt: `${game.name} - Web Game`,
+          alt: `${game.name} - Play Online | Playful by Smarlify`,
+          type: 'image/png',
         },
       ],
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${game.name} - Playful`,
-      description: game.description,
+      site: '@smarlify',
+      creator: '@smarlify',
+      title: fullTitle,
+      description: `${game.description} Play ${game.name} for free in your browser.`,
       images: [game.thumbnail],
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+      },
     },
   };
 }
@@ -55,5 +93,53 @@ export default async function GamePage({ params }: GamePageProps) {
     notFound();
   }
 
-  return <GameIframe game={game} />;
+  const gameUrl = `https://playful.smarlify.co/${game.id}`;
+
+  return (
+    <>
+      {/* Structured Data for Game */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "VideoGame",
+            "name": game.name,
+            "description": game.description,
+            "url": gameUrl,
+            "image": `https://playful.smarlify.co${game.thumbnail}`,
+            "genre": game.features,
+            "gamePlatform": "Web Browser",
+            "operatingSystem": "Any",
+            "applicationCategory": "Game",
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD",
+              "availability": "https://schema.org/InStock"
+            },
+            "publisher": {
+              "@type": "Organization",
+              "name": "Smarlify",
+              "url": "https://smarlify.co"
+            },
+            "author": {
+              "@type": "Organization",
+              "name": "Smarlify",
+              "url": "https://smarlify.co"
+            },
+            "datePublished": game.publishedDate,
+            "inLanguage": "en",
+            "isAccessibleForFree": true,
+            "playMode": "SinglePlayer",
+            "gameItem": game.features.map(feature => ({
+              "@type": "Thing",
+              "name": feature
+            }))
+          })
+        }}
+      />
+      <GameIframe game={game} />
+    </>
+  );
 }

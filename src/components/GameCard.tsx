@@ -1,7 +1,8 @@
 'use client';
 
 import { Game } from '@/types';
-import { Gamepad2, Clock, Zap, Github, Star } from 'lucide-react';
+import { Gamepad2, Clock, Zap, Github, Star, Share2 } from 'lucide-react';
+import ShareButton from './ShareButton';
 
 interface GameCardProps {
   game: Game;
@@ -153,9 +154,9 @@ export default function GameCard({ game, onClick }: GameCardProps) {
               Coming Soon
             </button>
           ) : (
-            <div className="flex gap-4">
+            <div className="flex gap-2">
               <button 
-                className="w-[40%] text-white p-3 rounded-lg font-semibold text-sm cursor-pointer bg-gray-500/20 border-none inline-flex items-center justify-center transition-all duration-300 hover:scale-105"
+                className="flex-1 text-white p-3 rounded-lg font-semibold text-sm cursor-pointer bg-gray-500/20 border-none inline-flex items-center justify-center transition-all duration-300 hover:scale-105"
                 style={{
                   background: 'linear-gradient(135deg, hsl(330 91% 65%), hsl(340 82% 52%))',
                   boxShadow: '0 10px 25px -5px hsl(330 91% 65% / 0.25)'
@@ -165,20 +166,22 @@ export default function GameCard({ game, onClick }: GameCardProps) {
                         <Gamepad2 className="w-3 h-3 inline mr-1" />
                         Play {game.name}
               </button>
+              
+              <ShareButton game={game} className="flex-shrink-0" />
+              
               {game.githubUrl && (
                 <a
                   href={game.githubUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-[40%] text-white p-3 rounded-lg font-semibold text-sm cursor-pointer border-none inline-flex items-center justify-center transition-all duration-300 hover:scale-105"
+                  className="flex-shrink-0 text-white p-3 rounded-lg font-semibold text-sm cursor-pointer border-none inline-flex items-center justify-center transition-all duration-300 hover:scale-105"
                   style={{
                     background: 'linear-gradient(135deg, hsl(0 0% 20%), hsl(0 0% 15%))',
                     boxShadow: '0 10px 25px -5px hsl(0 0% 20% / 0.25)'
                   }}
                   onClick={(e) => e.stopPropagation()}
                 >
-                  <Github className="w-3 h-3 inline mr-1" />
-                  Contribute on GitHub
+                  <Github className="w-3 h-3" />
                 </a>
               )}
             </div>

@@ -117,7 +117,7 @@
 ### 10. Deployment & Configuration
 - [x] Setup Heroku deployment for Next.js
 - [x] Configure environment variables
-- [x] Setup custom domain (play.smarlify.co)
+- [x] Setup custom domain (playful.smarlify.co)
 - [ ] Configure DNS for subdomains
 - [ ] Setup SSL certificates
 - [x] Configure CORS for all games

@@ -4,6 +4,7 @@ import { Game } from '@/types';
 import { ArrowLeft, ExternalLink, RefreshCw } from 'lucide-react';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import ShareButton from './ShareButton';
 
 interface GameIframeProps {
   game: Game;
@@ -59,6 +60,8 @@ export default function GameIframe({ game }: GameIframeProps) {
             </div>
 
             <div className="flex items-center gap-3">
+              <ShareButton game={game} />
+              
               <button
                 onClick={handleRefresh}
                 className="flex items-center gap-2 text-white/80 hover:text-white transition-colors"
