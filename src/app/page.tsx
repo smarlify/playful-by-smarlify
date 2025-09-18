@@ -22,8 +22,8 @@ export default function Home() {
           <div className="text-center">
             <div className="mb-8">
               <h1 className="mb-6 text-white font-bold">
-                <span className="inline-block -rotate-1 text-5xl md:text-7xl">Playful</span>
-                <span className="inline-block rotate-0 text-2xl md:text-3xl px-4 -top-1 -right-1 relative opacity-50">by</span>
+                <span className="inline-block -rotate-1 text-5xl md:text-7xl relative -left-2">Playful</span>
+                <span className="inline-block rotate-0 text-2xl md:text-3xl px-4 -top-1 relative opacity-50">by</span>
                 <span className="inline-block rotate-1 text-3xl md:text-5xl text-gradient">Smarlify</span>
               </h1>
               <p className="text-xl md:text-2xl text-gaming max-w-3xl mx-auto mb-8">
