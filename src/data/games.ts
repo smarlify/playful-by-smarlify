@@ -2,20 +2,6 @@ import { Game } from '@/types';
 
 export const games: Game[] = [
   {
-    id: 'traffic-run',
-    name: 'Traffic Run',
-    description: 'Experience the thrill of high-speed racing in this 2.5D racing game. Navigate through busy traffic, avoid collisions, and reach the finish line as fast as possible. Built with Three.js for stunning 3D graphics and smooth gameplay.',
-    shortDescription: 'High-speed 2.5D racing through busy traffic',
-    thumbnail: '/game-assets/traffic-run.png',
-    url: 'https://traffic-run-50a7914ff3f5.herokuapp.com/',
-    githubUrl: 'https://github.com/smarlify/traffic-run-game',
-    status: 'published',
-    tech: ['Three.js', 'TypeScript', 'WebGL'],
-    features: ['3D Graphics', 'Realistic Physics', 'Multiple Levels', 'Score System'],
-    color: 'from-pink-500 to-rose-600',
-    gradient: 'bg-gradient-to-br from-pink-500 to-rose-600'
-  },
-  {
     id: 'crossy-road',
     name: 'Crossy Road',
     description: 'Jump, dodge, and survive in this endless runner inspired by the classic Crossy Road. Navigate through obstacles, collect coins, and see how far you can go. Features beautiful 2.5D graphics and addictive gameplay.',
@@ -28,6 +14,20 @@ export const games: Game[] = [
     features: ['Endless Gameplay', 'Coin Collection', 'Obstacle Avoidance', 'High Scores'],
     color: 'from-blue-500 to-cyan-600',
     gradient: 'bg-gradient-to-br from-blue-500 to-cyan-600'
+  },
+  {
+    id: 'traffic-run',
+    name: 'Traffic Run',
+    description: 'Experience the thrill of high-speed racing in this 2.5D racing game. Navigate through busy traffic, avoid collisions, and reach the finish line as fast as possible. Built with Three.js for stunning 3D graphics and smooth gameplay.',
+    shortDescription: 'High-speed 2.5D racing through busy traffic',
+    thumbnail: '/game-assets/traffic-run.png',
+    url: 'https://traffic-run-50a7914ff3f5.herokuapp.com/',
+    githubUrl: 'https://github.com/smarlify/traffic-run-game',
+    status: 'published',
+    tech: ['Three.js', 'TypeScript', 'WebGL'],
+    features: ['3D Graphics', 'Realistic Physics', 'Multiple Levels', 'Score System'],
+    color: 'from-pink-500 to-rose-600',
+    gradient: 'bg-gradient-to-br from-pink-500 to-rose-600'
   },
   {
     id: 'space-shooter',

@@ -166,7 +166,6 @@ body {
 
 .game-card {
   padding: 1.5rem;
-  cursor: pointer;
   position: relative;
   overflow: hidden;
   background: hsl(221 39% 11% / 0.6);
