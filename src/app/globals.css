@@ -25,11 +25,6 @@ html, body {
   min-height: 100vh;
 }
 
-/* Override any potential white backgrounds */
-html, body, #__next, main, div {
-  background-color: hsl(221 84% 5%) !important;
-}
-
 * {
   box-sizing: border-box;
   border-color: rgba(255, 255, 255, 0.1);

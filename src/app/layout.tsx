@@ -62,7 +62,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en">
       <head>
         {/* Umami Analytics */}
         <Script
@@ -72,7 +72,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${inter.variable} font-sans antialiased gaming-bg`}
+        className={`${inter.variable} font-sans antialiased`}
       >
         {children}
       </body>
