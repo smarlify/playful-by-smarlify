@@ -3,6 +3,7 @@
 import { Game } from '@/types';
 import { ArrowLeft, ExternalLink, RefreshCw } from 'lucide-react';
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 interface GameIframeProps {
   game: Game;
@@ -10,8 +11,13 @@ interface GameIframeProps {
 }
 
 export default function GameIframe({ game, onBack }: GameIframeProps) {
+  const router = useRouter();
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
+
+  const handleBack = () => {
+    router.push('/');
+  };
 
   const handleLoad = () => {
     setIsLoading(false);
@@ -38,7 +44,7 @@ export default function GameIframe({ game, onBack }: GameIframeProps) {
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center gap-4">
               <button
-                onClick={onBack}
+                onClick={handleBack}
                 className="flex items-center gap-2 text-white/80 hover:text-white transition-colors"
               >
                 <ArrowLeft className="w-5 h-5" />
@@ -108,7 +114,7 @@ export default function GameIframe({ game, onBack }: GameIframeProps) {
                   Try Again
                 </button>
                 <button
-                  onClick={onBack}
+                  onClick={handleBack}
                   className="btn-neon"
                 >
                   <ArrowLeft className="w-4 h-4 inline mr-2" />

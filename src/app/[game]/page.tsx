@@ -10,7 +10,8 @@ interface GamePageProps {
 }
 
 export async function generateMetadata({ params }: GamePageProps): Promise<Metadata> {
-  const game = getGameById(params.game);
+  const { game: gameId } = await params;
+  const game = getGameById(gameId);
   
   if (!game) {
     return {
@@ -46,12 +47,13 @@ export async function generateMetadata({ params }: GamePageProps): Promise<Metad
   };
 }
 
-export default function GamePage({ params }: GamePageProps) {
-  const game = getGameById(params.game);
+export default async function GamePage({ params }: GamePageProps) {
+  const { game: gameId } = await params;
+  const game = getGameById(gameId);
   
   if (!game) {
     notFound();
   }
 
-  return <GameIframe game={game} onBack={() => window.history.back()} />;
+  return <GameIframe game={game} onBack={() => {}} />;
 }
