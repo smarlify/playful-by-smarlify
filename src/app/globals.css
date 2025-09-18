@@ -86,10 +86,9 @@ body {
 /* Gaming Button Variants */
 .btn-gaming {
   color: white;
-  padding: 1rem 2rem;
+  padding: 1rem;
   border-radius: 0.5rem;
   font-weight: 600;
-  font-size: 1.125rem;
   transition: all 0.3s ease;
   background: linear-gradient(135deg, hsl(330 91% 65%), hsl(340 82% 52%));
   box-shadow: 0 25px 50px -12px hsl(330 91% 65% / 0.25);
