@@ -171,7 +171,7 @@ export default function Home() {
               <span className="inline-block -rotate-1 text-3xl md:text-4xl">Participate</span>
             </h2>
             <p className="text-xl text-gaming max-w-3xl mx-auto">
-              Join our gaming community and help us build amazing experiences together
+              Join our gaming community and help us build amazing experiences together.
             </p>
           </div>
 
@@ -181,7 +181,7 @@ export default function Home() {
               <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-6">
                 <Zap className="w-8 h-8 text-primary" />
               </div>
-              <h3 className="text-xl font-bold text-white mb-4">Request & Report</h3>
+              <h3 className="text-xl font-bold text-white mb-4">Request Feature</h3>
               <p className="text-gaming mb-6">
                 Have an idea for a new game feature? Found a bug? Let us know on GitHub!
               </p>
@@ -223,7 +223,7 @@ export default function Home() {
               </div>
               <h3 className="text-xl font-bold text-white mb-4">Learn & Share</h3>
               <p className="text-gaming mb-6">
-                All our games are open source with MIT license. Learn from our code and share with others!
+                Our games are open source with MIT license. Learn from our code and share it with others!
               </p>
               <a
                 href="https://github.com/smarlify"
@@ -243,7 +243,7 @@ export default function Home() {
               </div>
               <h3 className="text-xl font-bold text-white mb-4">Sponsor Us</h3>
               <p className="text-gaming mb-6">
-                Support our development efforts. Buy us a coffee or send crypto!
+                Support our development efforts. Buy us a coffee or send us a crypto donation.
               </p>
               <div className="space-y-2">
                 <a
@@ -268,10 +268,10 @@ export default function Home() {
               </div>
               <h3 className="text-xl font-bold text-white mb-4">Hire Us</h3>
               <p className="text-gaming mb-6">
-                Need a custom game built? We create amazing gaming experiences tailored to your needs.
+                Need a game built? We create amazing gaming experiences tailored to your needs.
               </p>
               <a
-                href="mailto:hello@smarlify.co?subject=Game Development Inquiry"
+                href="mailto:dave@smarlify.co?subject=Game Development Inquiry"
                 className="btn-gaming inline-flex items-center"
               >
                 <span className="mr-2">💼</span>
@@ -286,10 +286,10 @@ export default function Home() {
               </div>
               <h3 className="text-xl font-bold text-white mb-4">Add Your Game</h3>
               <p className="text-gaming mb-6">
-                Have a game you'd like to showcase? We'd love to feature it on our platform!
+                Have an online game you'd like to showcase? We'd love to feature it on our platform!
               </p>
               <a
-                href="mailto:hello@smarlify.co?subject=Game Submission"
+                href="mailto:dave@smarlify.co?subject=Game Submission"
                 className="btn-gaming inline-flex items-center"
               >
                 <span className="mr-2">🎮</span>
