@@ -162,11 +162,11 @@ export default function Home() {
             </div>
             
             <div className="flex flex-wrap justify-center gap-6 text-sm text-muted-foreground mb-6">
-              <span>Built with Next.js & Three.js</span>
+              <span>Built by Smarlify</span>
               <span>•</span>
-              <span>Powered by Smarlify</span>
+              <span>Powered by Heroku</span>
               <span>•</span>
-              <span>© 2024 David Nekovar</span>
+              <span>© 2025 Smarlify.co</span>
             </div>
 
             <div className="text-xs text-muted-foreground">

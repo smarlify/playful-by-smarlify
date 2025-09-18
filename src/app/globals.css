@@ -45,19 +45,14 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
 }
 
-/* Gaming Background Effects - Inspired by DavidNekovar.cz */
+/* Gaming Background Effects - Exact DavidNekovar.cz dark theme */
 .gaming-bg {
-  background: linear-gradient(135deg, hsl(221 84% 5% / 0.7), hsl(221 84% 5% / 0.4)), 
-              linear-gradient(45deg, hsl(330 91% 65% / 0.1), transparent),
-              radial-gradient(circle at 20% 80%, rgba(236, 72, 153, 0.1) 0%, transparent 50%),
-              radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
-              radial-gradient(circle at 40% 40%, rgba(245, 158, 11, 0.05) 0%, transparent 50%);
-  animation: gaming-morph 20s ease-in-out infinite;
+  background: hsl(221 84% 5%);
   min-height: 100vh;
   position: relative;
 }
 
-/* Add animated overlay for extra depth */
+/* Animated background overlay - DavidNekovar.cz style */
 .gaming-bg::before {
   content: '';
   position: absolute;
