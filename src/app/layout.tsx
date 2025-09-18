@@ -9,9 +9,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Play.Smarlify.co - Gaming Hub",
+  title: "Playful - Gaming Hub",
   description: "Experience the ultimate gaming hub with Traffic Run, Crossy Road, Space Shooter, and more. Play amazing games built with cutting-edge web technologies.",
-  keywords: ["gaming", "games", "web games", "Traffic Run", "Crossy Road", "Space Shooter", "Three.js", "WebGL", "Smarlify"],
+  keywords: ["gaming", "games", "web games", "Traffic Run", "Crossy Road", "Space Shooter", "Three.js", "WebGL", "Smarlify", "Playful"],
   authors: [{ name: "David Nekovar", url: "https://github.com/davidnekovarcz" }],
   creator: "David Nekovar",
   publisher: "Smarlify",
@@ -30,21 +30,21 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "https://play.smarlify.co",
-    siteName: "Play.Smarlify.co",
-    title: "Play.Smarlify.co - Gaming Hub",
+    siteName: "Playful",
+    title: "Playful - Gaming Hub",
     description: "Experience the ultimate gaming hub with Traffic Run, Crossy Road, Space Shooter, and more.",
     images: [
       {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Play.Smarlify.co Gaming Hub",
+        alt: "Playful Gaming Hub",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Play.Smarlify.co - Gaming Hub",
+    title: "Playful - Gaming Hub",
     description: "Experience the ultimate gaming hub with Traffic Run, Crossy Road, Space Shooter, and more.",
     images: ["/og-image.jpg"],
   },

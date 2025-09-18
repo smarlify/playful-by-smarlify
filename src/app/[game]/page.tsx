@@ -15,17 +15,17 @@ export async function generateMetadata({ params }: GamePageProps): Promise<Metad
   
   if (!game) {
     return {
-      title: 'Game Not Found - Play.Smarlify.co',
+      title: 'Game Not Found - Playful',
       description: 'The requested game could not be found.',
     };
   }
 
   return {
-    title: `${game.name} - Play.Smarlify.co`,
+    title: `${game.name} - Playful`,
     description: game.description,
-    keywords: [game.name, ...game.tech, 'web game', 'browser game', 'Smarlify'],
+    keywords: [game.name, ...game.tech, 'web game', 'browser game', 'Smarlify', 'Playful'],
     openGraph: {
-      title: `${game.name} - Play.Smarlify.co`,
+      title: `${game.name} - Playful`,
       description: game.description,
       type: 'website',
       url: `https://play.smarlify.co/${game.id}`,
@@ -40,7 +40,7 @@ export async function generateMetadata({ params }: GamePageProps): Promise<Metad
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${game.name} - Play.Smarlify.co`,
+      title: `${game.name} - Playful`,
       description: game.description,
       images: [game.thumbnail],
     },
