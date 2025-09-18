@@ -22,11 +22,6 @@ html, body {
   min-height: 100vh;
 }
 
-* {
-  box-sizing: border-box;
-  border-color: rgba(255, 255, 255, 0.1);
-}
-
 body {
   background: linear-gradient(135deg, hsl(221 84% 5%), hsl(221 39% 11%)) !important;
   color: hsl(0 0% 98%) !important;
@@ -41,13 +36,12 @@ body {
 .gaming-bg {
   background: hsl(221 84% 5%);
   min-height: 100vh;
-  position: relative;
 }
 
 /* Animated background overlay - DavidNekovar.cz style */
 .gaming-bg::before {
   content: '';
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
@@ -57,31 +51,19 @@ body {
               radial-gradient(circle at 40% 40%, rgba(245, 158, 11, 0.05) 0%, transparent 50%);
   animation: morphing 20s ease-in-out infinite;
   pointer-events: none;
-  z-index: 0;
+  z-index: -2;
 }
 
-/* Ensure content is above the animated background */
-.gaming-bg > * {
-  position: relative;
-  z-index: 1;
+/* Particle background positioning */
+.particle-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: -1;
 }
-
-/* Ensure all main containers have dark background */
-#__next, main, .min-h-screen, body > div, html {
-  background: hsl(221 84% 5%) !important;
-  color: hsl(0 0% 98%) !important;
-}
-
-/* Force dark background on all elements */
-* {
-  background-color: transparent;
-}
-
-body, html, #__next, main, .min-h-screen {
-  background: hsl(221 84% 5%) !important;
-  background-color: hsl(221 84% 5%) !important;
-}
-
 
 @keyframes morphing {
   0%, 100% { 
@@ -168,7 +150,7 @@ body, html, #__next, main, .min-h-screen {
 
 /* Gaming Card Styles */
 .gaming-card {
-  background: hsl(221 39% 11% / 0.8);
+  background: hsl(221 39% 11% / 0.6);
   backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 1rem;
@@ -187,7 +169,7 @@ body, html, #__next, main, .min-h-screen {
   cursor: pointer;
   position: relative;
   overflow: hidden;
-  background: hsl(221 39% 11% / 0.8);
+  background: hsl(221 39% 11% / 0.6);
   backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 1rem;
@@ -276,8 +258,8 @@ body, html, #__next, main, .min-h-screen {
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background: linear-gradient(135deg, hsl(221 84% 5% / 0.7), hsl(221 84% 5% / 0.4)), 
-              linear-gradient(45deg, hsl(330 91% 65% / 0.1), transparent);
+  background: linear-gradient(135deg, hsl(221 84% 5% / 0.3), hsl(221 84% 5% / 0.1)), 
+              linear-gradient(45deg, hsl(330 91% 65% / 0.05), transparent);
 }
 
 /* Gaming Iframe */
