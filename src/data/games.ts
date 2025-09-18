@@ -43,13 +43,13 @@ export const games: Game[] = [
   {
     id: 'crazy-vacuum-3d',
     name: 'Crazy Vacuum 3D',
-    description: 'Coming soon! Experience the ultimate 3D vacuum cleaning adventure. Navigate through challenging levels, collect debris, and master the art of cleaning in this innovative 3D puzzle game.',
-    shortDescription: '3D vacuum cleaning puzzle adventure',
+    description: 'Coming soon! Experience the ultimate 3D vacuum cleaning adventure. Navigate through challenging levels, collect debris, and master the art of cleaning in this innovative 3D adventure game.',
+    shortDescription: '3D vacuum cleaning adventure',
     thumbnail: '/game-assets/crazy-vacuum-thumb.jpg',
     url: '#',
     status: 'coming-soon',
-    tech: ['Three.js', 'WebGL', 'TypeScript'],
-    features: ['3D Graphics', 'Puzzle Solving', 'Physics Simulation', 'Level Progression'],
+    tech: ['Unity 3D', 'C#'],
+    features: ['3D Graphics', 'Physics Simulation'],
     color: 'from-yellow-500 to-orange-600',
     gradient: 'bg-gradient-to-br from-yellow-500 to-orange-600'
   }
