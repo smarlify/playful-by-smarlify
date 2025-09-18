@@ -1,0 +1,202 @@
+@import "tailwindcss";
+
+/* Gaming Hub Dark Luxury Theme - Inspired by DavidNekovar.cz with Gaming Enhancements */
+
+@layer base {
+  :root {
+    /* Smarlify Brand Colors - Gaming Dark Theme */
+    --background: 221 84% 5%;
+    --foreground: 0 0% 98%;
+
+    --card: 221 39% 11%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 221 39% 11%;
+    --popover-foreground: 0 0% 98%;
+
+    /* Signature Pink Brand */
+    --primary: 330 91% 65%;
+    --primary-foreground: 0 0% 100%;
+    
+    /* Gaming Neon Blue */
+    --secondary: 193 82% 31%;
+    --secondary-foreground: 0 0% 100%;
+
+    /* Dark Gaming Tones */
+    --muted: 221 39% 11%;
+    --muted-foreground: 215 20% 65%;
+
+    /* Gaming Gold Accent */
+    --accent: 45 93% 58%;
+    --accent-foreground: 221 84% 5%;
+
+    /* Success Green for Scores */
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 221 39% 11%;
+    --input: 221 39% 11%;
+    --ring: 330 91% 65%;
+
+    --radius: 0.75rem;
+
+    /* Gaming Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(330 91% 65%), hsl(340 82% 52%));
+    --gradient-gaming: linear-gradient(135deg, hsl(193 82% 31%), hsl(199 89% 48%));
+    --gradient-neon: linear-gradient(135deg, hsl(45 93% 58%), hsl(330 91% 65%));
+    --gradient-dark: linear-gradient(135deg, hsl(221 84% 5% / 0.95), hsl(221 84% 5% / 0.8));
+    --gradient-glow: linear-gradient(135deg, hsl(330 91% 65% / 0.2), hsl(193 82% 31% / 0.2));
+
+    /* Gaming Shadows */
+    --shadow-gaming: 0 25px 50px -12px hsl(330 91% 65% / 0.25);
+    --shadow-neon: 0 25px 50px -12px hsl(193 82% 31% / 0.25);
+    --shadow-glow: 0 0 20px hsl(330 91% 65% / 0.3);
+    --shadow-elegant: 0 10px 30px -5px hsl(221 84% 5% / 0.1);
+
+    /* Animation Variables */
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --transition-gaming: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-weight: 300;
+    background: linear-gradient(135deg, hsl(221 84% 5%), hsl(221 39% 11%));
+    min-height: 100vh;
+  }
+}
+
+@layer components {
+  /* Gaming Background Effects */
+  .gaming-bg {
+    background: radial-gradient(circle at 20% 80%, rgba(236, 72, 153, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(245, 158, 11, 0.05) 0%, transparent 50%);
+    animation: gaming-morph 20s ease-in-out infinite;
+  }
+
+  @keyframes gaming-morph {
+    0%, 100% { 
+      background: radial-gradient(circle at 20% 80%, rgba(236, 72, 153, 0.1) 0%, transparent 50%),
+                  radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+                  radial-gradient(circle at 40% 40%, rgba(245, 158, 11, 0.05) 0%, transparent 50%);
+    }
+    33% { 
+      background: radial-gradient(circle at 70% 30%, rgba(236, 72, 153, 0.15) 0%, transparent 50%),
+                  radial-gradient(circle at 30% 70%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
+                  radial-gradient(circle at 60% 60%, rgba(245, 158, 11, 0.08) 0%, transparent 50%);
+    }
+    66% { 
+      background: radial-gradient(circle at 40% 20%, rgba(236, 72, 153, 0.08) 0%, transparent 50%),
+                  radial-gradient(circle at 60% 80%, rgba(59, 130, 246, 0.12) 0%, transparent 50%),
+                  radial-gradient(circle at 20% 30%, rgba(245, 158, 11, 0.1) 0%, transparent 50%);
+    }
+  }
+
+  /* Gaming Button Variants */
+  .btn-gaming {
+    @apply bg-gradient-primary text-primary-foreground px-8 py-4 rounded-lg font-semibold text-lg shadow-gaming hover:shadow-neon transition-all duration-300 hover:scale-105 hover:shadow-glow;
+  }
+  
+  .btn-neon {
+    @apply bg-gradient-gaming text-white border border-cyan-400/20 px-6 py-3 rounded-lg font-medium backdrop-blur-sm hover:bg-cyan-400/10 hover:border-cyan-400/40 transition-all duration-300 hover:shadow-glow;
+  }
+
+  .btn-glow {
+    @apply bg-gradient-neon text-white px-6 py-3 rounded-lg font-medium shadow-glow hover:shadow-gaming transition-all duration-300 hover:scale-105;
+  }
+
+  /* Gaming Card Styles */
+  .gaming-card {
+    @apply bg-card/80 backdrop-blur-md border border-white/10 rounded-2xl shadow-elegant hover:shadow-gaming transition-all duration-500 hover:-translate-y-2 hover:border-primary/20;
+  }
+
+  .game-card {
+    @apply gaming-card p-6 cursor-pointer group relative overflow-hidden;
+  }
+
+  .game-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left 0.5s;
+  }
+
+  .game-card:hover::before {
+    left: 100%;
+  }
+
+  /* Text Effects */
+  .text-gradient {
+    @apply bg-gradient-primary bg-clip-text text-transparent;
+  }
+
+  .text-gaming {
+    @apply text-white/90 leading-relaxed;
+  }
+
+  .text-glow {
+    text-shadow: 0 0 10px hsl(330 91% 65% / 0.5);
+  }
+
+  /* Gaming Animations */
+  .float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+  }
+
+  .pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 20px hsl(330 91% 65% / 0.3); }
+    50% { box-shadow: 0 0 40px hsl(330 91% 65% / 0.6); }
+  }
+
+  /* Gaming Grid */
+  .games-grid {
+    @apply grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto;
+  }
+
+  /* Hero Section */
+  .hero-gaming {
+    @apply relative min-h-screen flex items-center justify-center overflow-hidden;
+    background: linear-gradient(135deg, hsl(221 84% 5% / 0.7), hsl(221 84% 5% / 0.4)), 
+                linear-gradient(45deg, hsl(330 91% 65% / 0.1), transparent);
+  }
+
+  /* Gaming Iframe */
+  .game-iframe {
+    @apply w-full h-full rounded-lg border border-white/10 shadow-gaming;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .games-grid {
+      @apply grid-cols-1 gap-4;
+    }
+    
+    .game-card {
+      @apply p-4;
+    }
+  }
+}

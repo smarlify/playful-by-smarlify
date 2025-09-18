@@ -1,0 +1,10 @@
+# Game Assets Placeholder
+
+This directory will contain game thumbnails and assets:
+- traffic-run-thumb.jpg
+- crossy-road-thumb.jpg  
+- space-shooter-thumb.jpg
+- crazy-vacuum-thumb.jpg
+- og-image.jpg (for social sharing)
+
+For now, the games use gradient backgrounds as placeholders.
