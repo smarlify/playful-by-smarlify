@@ -22,32 +22,32 @@ export default function Home() {
           <div className="text-center">
             <div className="mb-8">
               <h1 className="text-5xl md:text-7xl font-bold text-white mb-6">
-                <span className="text-gradient">Play.Smarlify.co</span>
+                <span className="text-gradient gaming-float">Play.Smarlify.co</span>
               </h1>
-              <p className="text-xl md:text-2xl text-gaming max-w-3xl mx-auto mb-8">
+              <p className="text-xl md:text-2xl text-gaming max-w-3xl mx-auto mb-8 gaming-shimmer">
                 Experience the ultimate gaming hub with cutting-edge web games built with Three.js, WebGL, and modern web technologies.
               </p>
             </div>
 
             {/* Stats */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto mb-12">
-              <div className="gaming-card p-6 text-center">
-                <Gamepad2 className="w-8 h-8 text-primary mx-auto mb-2" />
+              <div className="gaming-card gaming-pulse p-6 text-center">
+                <Gamepad2 className="w-8 h-8 text-primary mx-auto mb-2 gaming-float" />
                 <div className="text-2xl font-bold text-white">4</div>
                 <div className="text-sm text-muted-foreground">Games</div>
               </div>
-              <div className="gaming-card p-6 text-center">
-                <Zap className="w-8 h-8 text-secondary mx-auto mb-2" />
+              <div className="gaming-card gaming-pulse p-6 text-center" style={{ animationDelay: '0.5s' }}>
+                <Zap className="w-8 h-8 text-secondary mx-auto mb-2 gaming-float" />
                 <div className="text-2xl font-bold text-white">60fps</div>
                 <div className="text-sm text-muted-foreground">Performance</div>
               </div>
-              <div className="gaming-card p-6 text-center">
-                <Trophy className="w-8 h-8 text-accent mx-auto mb-2" />
+              <div className="gaming-card gaming-pulse p-6 text-center" style={{ animationDelay: '1s' }}>
+                <Trophy className="w-8 h-8 text-accent mx-auto mb-2 gaming-float" />
                 <div className="text-2xl font-bold text-white">∞</div>
                 <div className="text-sm text-muted-foreground">High Scores</div>
               </div>
-              <div className="gaming-card p-6 text-center">
-                <Users className="w-8 h-8 text-success mx-auto mb-2" />
+              <div className="gaming-card gaming-pulse p-6 text-center" style={{ animationDelay: '1.5s' }}>
+                <Users className="w-8 h-8 text-success mx-auto mb-2 gaming-float" />
                 <div className="text-2xl font-bold text-white">Free</div>
                 <div className="text-sm text-muted-foreground">To Play</div>
               </div>

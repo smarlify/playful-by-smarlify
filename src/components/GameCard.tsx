@@ -14,7 +14,7 @@ export default function GameCard({ game, onClick }: GameCardProps) {
 
   return (
     <div 
-      className={`game-card group ${isComingSoon ? 'opacity-75' : ''}`}
+      className={`game-card gaming-card-enhanced gaming-shimmer group ${isComingSoon ? 'opacity-75' : ''}`}
       onClick={isComingSoon ? undefined : onClick}
     >
       {/* Game Thumbnail */}
