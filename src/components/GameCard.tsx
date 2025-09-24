@@ -130,11 +130,11 @@ export default function GameCard({ game, onClick }: GameCardProps) {
                 {feature}
               </span>
             ))}
-            {game.features.length > 3 && (
+            {/* game.features.length > 3 && (
               <span className="text-muted-foreground text-xs">
                 +{game.features.length - 3} more
               </span>
-            )}
+            ) */}
           </div>
         </div>
 

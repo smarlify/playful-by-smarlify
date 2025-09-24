@@ -11,7 +11,7 @@ export const games: Game[] = [
     githubUrl: 'https://github.com/smarlify/crossy-road-game',
     status: 'published',
     tech: ['React Three Fiber', 'Zustand', 'TypeScript'],
-    features: ['Endless Gameplay', 'Coin Collection', 'Obstacle Avoidance', 'High Scores'],
+    features: ['Endless Gameplay', 'Obstacle Avoidance', 'Corn Collection', 'High Scores'],
     color: 'from-blue-500 to-cyan-600',
     gradient: 'bg-gradient-to-br from-blue-500 to-cyan-600',
     publishedDate: '2024-06-01'
@@ -26,7 +26,7 @@ export const games: Game[] = [
     githubUrl: 'https://github.com/smarlify/traffic-run-game',
     status: 'published',
     tech: ['Three.js', 'TypeScript', 'WebGL'],
-    features: ['3D Graphics', 'Realistic Physics', 'Multiple Levels', 'Score System'],
+    features: ['Obstacle Avoidance', 'Multiple Levels', 'High Scores'],
     color: 'from-pink-500 to-rose-600',
     gradient: 'bg-gradient-to-br from-pink-500 to-rose-600',
     publishedDate: '2024-07-01'
@@ -41,7 +41,7 @@ export const games: Game[] = [
     githubUrl: 'https://github.com/smarlify/space-shooter',
     status: 'published',
     tech: ['WebGL', 'Vanilla JS', 'Three.js'],
-    features: ['2D Graphics', 'Wave-based Gameplay', 'Power-ups', 'Boss Battles'],
+    features: ['2D Graphics', 'Wave-based Gameplay', 'Power-ups'],
     color: 'from-purple-500 to-indigo-600',
     gradient: 'bg-gradient-to-br from-purple-500 to-indigo-600',
     publishedDate: '2024-04-01'
@@ -55,7 +55,7 @@ export const games: Game[] = [
     url: '#',
     status: 'coming-soon',
     tech: ['Unity 3D', 'C#'],
-    features: ['3D Graphics', 'Physics Simulation'],
+    features: ['3D Graphics', 'Realistic Physics'],
     color: 'from-yellow-500 to-orange-600',
     gradient: 'bg-gradient-to-br from-yellow-500 to-orange-600'
   }

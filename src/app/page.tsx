@@ -41,8 +41,8 @@ export default function Home() {
                 <span className="inline-block rotate-1 text-3xl md:text-5xl text-gradient">Smarlify</span>
               </h1>
               <p className="text-xl md:text-2xl text-gaming max-w-3xl mx-auto mb-8">
-                Experience the ultimate gaming hub with cutting-edge games<br />
-                built with Three.js, WebGL, Unity 3D and other.
+                Experience the ultimate gaming hub with cutting-edge games
+                built with Three.js, WebGL, Unity 3D and other.
               </p>
             </div>
 
@@ -192,6 +192,29 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Add Your Game */}
+            <div className="gaming-card p-6 text-center group">
+              <div className="w-16 h-16 bg-purple-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                <Plus className="w-8 h-8 text-purple-500" />
+              </div>
+              <h3 className="text-xl font-bold text-white mb-4">Add Your Game</h3>
+              <p className="text-gaming mb-6">
+                Have an online game you&apos;d like to showcase? We&apos;d love to feature it on our platform!
+              </p>
+              <a
+                href="mailto:dave@smarlify.co?subject=Game Submission"
+                className="btn-gaming inline-flex items-center"
+                style={{
+                  background: 'linear-gradient(135deg, #a855f7, #9333ea)',
+                  color: '#ffffff',
+                  boxShadow: '0 10px 25px -5px #a855f7 / 0.25'
+                }}
+              >
+                <Plus className="w-4 h-4 mr-2" />
+                Submit Game
+              </a>
+            </div>
+            
             {/* Request Features / Report Bugs */}
             <div className="gaming-card p-6 text-center group">
               <div className="w-16 h-16 bg-yellow-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
@@ -267,47 +290,6 @@ export default function Home() {
               </a>
             </div>
 
-            {/* Sponsor */}
-            <div className="gaming-card p-6 text-center group">
-              <div className="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
-                <span className="text-2xl">☕</span>
-              </div>
-              <h3 className="text-xl font-bold text-white mb-4">Sponsor Us</h3>
-              <p className="text-gaming mb-6">
-                Support our development efforts. Buy us a coffee or send us a crypto donation.
-              </p>
-              <div className="space-y-2">
-                <div className="flex gap-4">
-                  <a
-                    href="https://buymeacoffee.com/dave5w"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn-gaming inline-flex items-center flex-1 justify-center"
-                    style={{
-                      background: 'linear-gradient(135deg, #FFDD00, #FFC700)',
-                      color: '#000000',
-                      boxShadow: '0 10px 25px -5px #FFDD00 / 0.25'
-                    }}
-                  >
-                    <span className="mr-2">☕</span>
-                    Buy Coffee
-                  </a>
-                  <button
-                    onClick={() => setShowCryptoPopup(true)}
-                    className="btn-gaming inline-flex items-center flex-1 justify-center"
-                    style={{
-                      background: 'linear-gradient(135deg, #f7931a, #ff9500)',
-                      color: '#ffffff',
-                      boxShadow: '0 10px 25px -5px #f7931a / 0.25'
-                    }}
-                  >
-                    <span className="mr-2">₿</span>
-                    Send Crypto
-                  </button>
-                </div>
-              </div>
-            </div>
-
             {/* Hire Us */}
             <div className="gaming-card p-6 text-center group">
               <div className="w-16 h-16 bg-pink-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
@@ -333,28 +315,47 @@ export default function Home() {
               </a>
             </div>
 
-            {/* Add Your Game */}
+            {/* Sponsor */}
             <div className="gaming-card p-6 text-center group">
-              <div className="w-16 h-16 bg-purple-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Plus className="w-8 h-8 text-purple-500" />
+              <div className="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                <span className="text-2xl">☕</span>
               </div>
-              <h3 className="text-xl font-bold text-white mb-4">Add Your Game</h3>
+              <h3 className="text-xl font-bold text-white mb-4">Sponsor Us</h3>
               <p className="text-gaming mb-6">
-                Have an online game you&apos;d like to showcase? We&apos;d love to feature it on our platform!
+                Support our development efforts. Buy us a coffee or send us a crypto donation.
               </p>
-              <a
-                href="mailto:dave@smarlify.co?subject=Game Submission"
-                className="btn-gaming inline-flex items-center"
-                style={{
-                  background: 'linear-gradient(135deg, #a855f7, #9333ea)',
-                  color: '#ffffff',
-                  boxShadow: '0 10px 25px -5px #a855f7 / 0.25'
-                }}
-              >
-                <Plus className="w-4 h-4 mr-2" />
-                Submit Game
-              </a>
+              <div className="space-y-2">
+                <div className="flex justify-center items-center gap-4">
+                  <a
+                    href="https://buymeacoffee.com/dave5w"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-gaming inline-flex items-center w-1/3"
+                    style={{
+                      background: 'linear-gradient(135deg, #FFDD00, #FFC700)',
+                      color: '#000000',
+                      boxShadow: '0 10px 25px -5px #FFDD00 / 0.25'
+                    }}
+                  >
+                    <small className="hidden mr-1">Buy us</small>
+                    <span className="mr-2">☕</span> Coffee
+                  </a>
+                  <button
+                    onClick={() => setShowCryptoPopup(true)}
+                    className="btn-gaming inline-flex items-center w-1/3"
+                    style={{
+                      background: 'linear-gradient(135deg, #f7931a, #ff9500)',
+                      color: '#ffffff',
+                      boxShadow: '0 10px 25px -5px #f7931a / 0.25'
+                    }}
+                  >
+                    <small className="hidden mr-1">Send us</small>
+                    <span className="mr-2">₿</span> Crypto
+                  </button>
+                </div>
+              </div>
             </div>
+
           </div>
         </div>
       </section>
