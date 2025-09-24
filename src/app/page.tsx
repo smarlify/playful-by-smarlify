@@ -276,8 +276,8 @@ export default function Home() {
               <p className="text-gaming mb-6">
                 Support our development efforts. Buy us a coffee or send us a crypto donation.
               </p>
-              <div className="space-y-2">
-                <div className="flex gap-2">
+              <div className="space-y-2 w-[90%] mx-auto">
+                <div className="flex gap-4">
                   <a
                     href="https://buymeacoffee.com/dave5w"
                     target="_blank"
