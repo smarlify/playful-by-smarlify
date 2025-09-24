@@ -377,7 +377,7 @@ export default function Home() {
               <div className="flex items-center gap-2">
                 <span>Designed by</span>
                 <a 
-                  href="https://lovable.dev?utm_source=playful&utm_medium=referral&utm_campaign=footer"
+                  href="https://lovable.dev?via=david-nekovar&utm_source=playful&utm_medium=referral&utm_campaign=footer"
             target="_blank"
             rel="noopener noreferrer"
                   className="flex items-center gap-1 text-gray-200 hover:text-pink-500 transition-colors duration-300 group"
