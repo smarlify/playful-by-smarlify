@@ -118,6 +118,13 @@ export default function RootLayout({
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
             gtag('config', 'G-C4NNL9P9S8');
+            
+            // Global GA event tracking function
+            window.trackEvent = function(eventName, parameters = {}) {
+              if (typeof gtag !== 'undefined') {
+                gtag('event', eventName, parameters);
+              }
+            };
           `}
         </Script>
       </head>

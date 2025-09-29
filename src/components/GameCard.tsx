@@ -39,7 +39,17 @@ export default function GameCard({ game, onClick }: GameCardProps) {
       className={`game-card group ${isComingSoon ? 'opacity-75' : ''} overflow-hidden`}
     >
       {/* Game Thumbnail */}
-      <div className="relative mb-4 overflow-hidden rounded-xl cursor-pointer" onClick={isComingSoon ? undefined : onClick}>
+      <div className="relative mb-4 overflow-hidden rounded-xl cursor-pointer" onClick={isComingSoon ? undefined : () => {
+        // Track game card click event
+        if (typeof window !== 'undefined' && window.trackEvent) {
+          window.trackEvent('game_card_click', {
+            game_id: game.id,
+            game_name: game.name,
+            event_category: 'game_interaction'
+          });
+        }
+        onClick();
+      }}>
         <div className="aspect-video relative">
           {/* Game Screenshot */}
           <img 
@@ -160,7 +170,17 @@ export default function GameCard({ game, onClick }: GameCardProps) {
                   background: 'linear-gradient(135deg, hsl(330 91% 65%), hsl(340 82% 52%))',
                   boxShadow: '0 10px 25px -5px hsl(330 91% 65% / 0.25)'
                 }}
-                onClick={onClick}
+                onClick={() => {
+                  // Track game play click event
+                  if (typeof window !== 'undefined' && window.trackEvent) {
+                    window.trackEvent('game_play_click', {
+                      game_id: game.id,
+                      game_name: game.name,
+                      event_category: 'game_interaction'
+                    });
+                  }
+                  onClick();
+                }}
               >
                         <Gamepad2 className="w-3 h-3 inline mr-1" />
                         Play {game.name}
@@ -175,7 +195,18 @@ export default function GameCard({ game, onClick }: GameCardProps) {
                     background: 'linear-gradient(135deg, hsl(0 0% 20%), hsl(0 0% 15%))',
                     boxShadow: '0 10px 25px -5px hsl(0 0% 20% / 0.25)'
                   }}
-                  onClick={(e) => e.stopPropagation()}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    // Track GitHub link click event
+                    if (typeof window !== 'undefined' && window.trackEvent) {
+                      window.trackEvent('github_link_click', {
+                        game_id: game.id,
+                        game_name: game.name,
+                        github_url: game.githubUrl,
+                        event_category: 'external_link'
+                      });
+                    }
+                  }}
                 >
                   <Github className="w-3 h-3 inline mr-1" />
                   Contribute on GitHub

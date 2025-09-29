@@ -13,10 +13,24 @@ export default function Home() {
   const [copied, setCopied] = useState(false);
 
   const handleGameClick = (gameId: string) => {
+    // Track featured game click event
+    if (typeof window !== 'undefined' && window.trackEvent) {
+      window.trackEvent('featured_game_click', {
+        game_id: gameId,
+        event_category: 'game_interaction'
+      });
+    }
     router.push(`/${gameId}`);
   };
 
   const copyToClipboard = async (text: string) => {
+    // Track copy crypto address event
+    if (typeof window !== 'undefined' && window.trackEvent) {
+      window.trackEvent('copy_crypto_address', {
+        event_category: 'donation_interaction'
+      });
+    }
+    
     try {
       await navigator.clipboard.writeText(text);
       setCopied(true);
@@ -209,6 +223,13 @@ export default function Home() {
                   color: '#ffffff',
                   boxShadow: '0 10px 25px -5px #a855f7 / 0.25'
                 }}
+                onClick={() => {
+                  if (typeof window !== 'undefined' && window.trackEvent) {
+                    window.trackEvent('submit_game_click', {
+                      event_category: 'participation_interaction'
+                    });
+                  }
+                }}
               >
                 <Plus className="w-4 h-4 mr-2" />
                 Submit Game
@@ -233,6 +254,13 @@ export default function Home() {
                   background: 'linear-gradient(135deg, #059669, #047857)',
                   color: '#ffffff',
                   boxShadow: '0 10px 25px -5px #059669 / 0.25'
+                }}
+                onClick={() => {
+                  if (typeof window !== 'undefined' && window.trackEvent) {
+                    window.trackEvent('create_issue_click', {
+                      event_category: 'participation_interaction'
+                    });
+                  }
                 }}
               >
                 <Lightbulb className="w-4 h-4 mr-2" />
@@ -259,6 +287,13 @@ export default function Home() {
                   color: '#ffffff',
                   boxShadow: '0 10px 25px -5px #6b7280 / 0.25'
                 }}
+                onClick={() => {
+                  if (typeof window !== 'undefined' && window.trackEvent) {
+                    window.trackEvent('make_pr_click', {
+                      event_category: 'participation_interaction'
+                    });
+                  }
+                }}
               >
                 <GitPullRequest className="w-4 h-4 mr-2" />
                 Make PR
@@ -284,6 +319,13 @@ export default function Home() {
                   color: '#ffffff',
                   boxShadow: '0 10px 25px -5px #0891b2 / 0.25'
                 }}
+                onClick={() => {
+                  if (typeof window !== 'undefined' && window.trackEvent) {
+                    window.trackEvent('view_source_click', {
+                      event_category: 'participation_interaction'
+                    });
+                  }
+                }}
               >
                 <BookOpen className="w-4 h-4 mr-2" />
                 View Source
@@ -308,6 +350,13 @@ export default function Home() {
                   background: 'linear-gradient(135deg, #ec4899, #be185d)',
                   color: '#ffffff',
                   boxShadow: '0 10px 25px -5px #ec4899 / 0.25'
+                }}
+                onClick={() => {
+                  if (typeof window !== 'undefined' && window.trackEvent) {
+                    window.trackEvent('contact_us_click', {
+                      event_category: 'business_interaction'
+                    });
+                  }
                 }}
               >
                 <Briefcase className="w-4 h-4 mr-2" />
@@ -336,12 +385,26 @@ export default function Home() {
                       color: '#000000',
                       boxShadow: '0 10px 25px -5px #FFDD00 / 0.25'
                     }}
+                    onClick={() => {
+                      if (typeof window !== 'undefined' && window.trackEvent) {
+                        window.trackEvent('buy_coffee_click', {
+                          event_category: 'donation_interaction'
+                        });
+                      }
+                    }}
                   >
                     <small className="hidden mr-1">Buy us</small>
                     <span className="mr-2">☕</span> Coffee
                   </a>
                   <button
-                    onClick={() => setShowCryptoPopup(true)}
+                    onClick={() => {
+                      if (typeof window !== 'undefined' && window.trackEvent) {
+                        window.trackEvent('crypto_donation_click', {
+                          event_category: 'donation_interaction'
+                        });
+                      }
+                      setShowCryptoPopup(true);
+                    }}
                     className="btn-gaming inline-flex items-center w-1/3"
                     style={{
                       background: 'linear-gradient(135deg, #f7931a, #ff9500)',
@@ -444,7 +507,14 @@ export default function Home() {
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
           <div className="gaming-card p-8 max-w-lg w-full relative">
             <button
-              onClick={() => setShowCryptoPopup(false)}
+              onClick={() => {
+                if (typeof window !== 'undefined' && window.trackEvent) {
+                  window.trackEvent('crypto_popup_close', {
+                    event_category: 'donation_interaction'
+                  });
+                }
+                setShowCryptoPopup(false);
+              }}
               className="absolute top-4 right-4 text-muted-foreground hover:text-white transition-colors"
             >
               ✕
@@ -496,7 +566,14 @@ export default function Home() {
 
               <div className="text-center">
                 <button
-                  onClick={() => setShowCryptoPopup(false)}
+                  onClick={() => {
+                    if (typeof window !== 'undefined' && window.trackEvent) {
+                      window.trackEvent('crypto_popup_close_button', {
+                        event_category: 'donation_interaction'
+                      });
+                    }
+                    setShowCryptoPopup(false);
+                  }}
                   className="btn-gaming"
                 >
                   Close

@@ -18,6 +18,15 @@ export default function ShareButton({ game, className = '' }: ShareButtonProps) 
   const shareTitle = `${game.name} - Play Online | Playful by Smarlify`;
 
   const handleWebShare = async () => {
+    // Track share button click event
+    if (typeof window !== 'undefined' && window.trackEvent) {
+      window.trackEvent('share_button_click', {
+        game_id: game.id,
+        game_name: game.name,
+        event_category: 'social_interaction'
+      });
+    }
+    
     if (navigator.share) {
       try {
         await navigator.share({
@@ -35,6 +44,15 @@ export default function ShareButton({ game, className = '' }: ShareButtonProps) 
   };
 
   const handleCopyLink = async () => {
+    // Track copy link event
+    if (typeof window !== 'undefined' && window.trackEvent) {
+      window.trackEvent('copy_link_click', {
+        game_id: game.id,
+        game_name: game.name,
+        event_category: 'social_interaction'
+      });
+    }
+    
     try {
       await navigator.clipboard.writeText(gameUrl);
       setCopied(true);
@@ -46,6 +64,16 @@ export default function ShareButton({ game, className = '' }: ShareButtonProps) 
   };
 
   const handleSocialShare = (platform: string) => {
+    // Track social share event
+    if (typeof window !== 'undefined' && window.trackEvent) {
+      window.trackEvent('social_share_click', {
+        game_id: game.id,
+        game_name: game.name,
+        platform: platform,
+        event_category: 'social_interaction'
+      });
+    }
+    
     let url = '';
     
     switch (platform) {
