@@ -153,7 +153,7 @@ export default function GameCard({ game, onClick }: GameCardProps) {
               Coming Soon
             </button>
           ) : (
-            <div className="grid lg:grid-cols-2 grid-cols-1 gap-5">
+            <div className="grid md:grid-cols-2 grid-cols-1 gap-5">
               <button 
                 className="text-white md:p-4 p-3 rounded-lg font-semibold text-sm cursor-pointer bg-gray-500/20 border-none inline-flex items-center justify-center transition-all duration-300 hover:scale-105"
                 style={{

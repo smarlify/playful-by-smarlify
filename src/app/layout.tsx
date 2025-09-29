@@ -107,6 +107,19 @@ export default function RootLayout({
           data-website-id="83e255ad-387c-4a7d-90af-8b5787fc38bb"
           strategy="afterInteractive"
         />
+        {/* Google Analytics */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-C4NNL9P9S8"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-C4NNL9P9S8');
+          `}
+        </Script>
       </head>
       <body
         className={`${inter.variable} font-sans antialiased gaming-bg`}
