@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import ParticleBackground from '@/components/ParticleBackground';
 import Script from "next/script";
+import { PLAYFUL_SEO, SEOHelpers } from '@/lib/seo';
 
 const inter = Inter({
   subsets: ["latin"],
@@ -10,15 +11,15 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Playful by Smarlify - Ultimate Gaming Hub",
-  description: "Experience the ultimate gaming hub with Traffic Run, Crossy Road, Space Shooter, and more. Play amazing games built with cutting-edge web technologies like Three.js, WebGL, and Unity 3D.",
-  keywords: ["gaming", "games", "web games", "Traffic Run", "Crossy Road", "Space Shooter", "Three.js", "WebGL", "Unity 3D", "Smarlify", "Playful", "online games", "browser games", "free games"],
-  authors: [{ name: "Smarlify", url: "https://github.com/smarlify" }],
-  creator: "Smarlify",
-  publisher: "Smarlify",
-  metadataBase: new URL("https://playful.smarlify.co"),
+  title: PLAYFUL_SEO.title,
+  description: PLAYFUL_SEO.description,
+  keywords: PLAYFUL_SEO.keywords,
+  authors: [{ name: PLAYFUL_SEO.author, url: "https://github.com/smarlify" }],
+  creator: PLAYFUL_SEO.creator,
+  publisher: PLAYFUL_SEO.publisher,
+  metadataBase: new URL(PLAYFUL_SEO.url),
   alternates: {
-    canonical: "https://playful.smarlify.co",
+    canonical: PLAYFUL_SEO.canonical,
   },
   robots: {
     index: true,
@@ -34,30 +35,30 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://playful.smarlify.co",
-    siteName: "Playful by Smarlify",
-    title: "Playful by Smarlify - Ultimate Gaming Hub",
-    description: "Experience the ultimate gaming hub with Traffic Run, Crossy Road, Space Shooter, and more. Play amazing games built with cutting-edge web technologies.",
+    url: PLAYFUL_SEO.url,
+    siteName: PLAYFUL_SEO.siteName,
+    title: PLAYFUL_SEO.title,
+    description: PLAYFUL_SEO.description,
     images: [
       {
-        url: "/game-assets/crossy-road.png",
+        url: PLAYFUL_SEO.ogImage,
         width: 1200,
         height: 630,
-        alt: "Crossy Road - Playful by Smarlify Gaming Hub",
+        alt: "Playful by Smarlify - Ultimate Gaming Hub",
         type: "image/png",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    site: "@smarlify",
-    creator: "@smarlify",
-    title: "Playful by Smarlify - Ultimate Gaming Hub",
-    description: "Experience the ultimate gaming hub with Traffic Run, Crossy Road, Space Shooter, and more. Play amazing games built with cutting-edge web technologies.",
-    images: ["/game-assets/crossy-road.png"],
+    site: PLAYFUL_SEO.twitter.site,
+    creator: PLAYFUL_SEO.twitter.creator,
+    title: PLAYFUL_SEO.title,
+    description: PLAYFUL_SEO.description,
+    images: [PLAYFUL_SEO.twitterImage],
   },
   verification: {
-    google: "your-google-verification-code",
+    google: PLAYFUL_SEO.googleVerification,
   },
 };
 
@@ -72,6 +73,8 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const structuredData = SEOHelpers.generateStructuredData(PLAYFUL_SEO);
+
   return (
     <html lang="en">
       <head>
@@ -79,26 +82,7 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "WebSite",
-              "name": "Playful by Smarlify",
-              "description": "Experience the ultimate gaming hub with Traffic Run, Crossy Road, Space Shooter, and more. Play amazing games built with cutting-edge web technologies.",
-              "url": "https://playful.smarlify.co",
-              "publisher": {
-                "@type": "Organization",
-                "name": "Smarlify",
-                "url": "https://smarlify.co"
-              },
-              "potentialAction": {
-                "@type": "SearchAction",
-                "target": "https://playful.smarlify.co?q={search_term_string}",
-                "query-input": "required name=search_term_string"
-              },
-              "sameAs": [
-                "https://github.com/smarlify"
-              ]
-            })
+            __html: JSON.stringify(structuredData),
           }}
         />
         {/* Umami Analytics */}

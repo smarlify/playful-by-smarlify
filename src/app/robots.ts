@@ -1,4 +1,5 @@
 import { MetadataRoute } from 'next'
+import { PLAYFUL_SEO } from '@/lib/seo'
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -7,6 +8,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: ['/private/', '/admin/'],
     },
-    sitemap: 'https://playful.smarlify.co/sitemap.xml',
+    sitemap: `${PLAYFUL_SEO.url}/sitemap.xml`,
   }
 }
