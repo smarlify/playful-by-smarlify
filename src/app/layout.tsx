@@ -123,8 +123,17 @@ export default function RootLayout({
             window.trackEvent = function(eventName, parameters = {}) {
               if (typeof gtag !== 'undefined') {
                 gtag('event', eventName, parameters);
+                console.log('GA Event tracked:', eventName, parameters);
+              } else {
+                console.warn('gtag not available for event:', eventName);
               }
             };
+            
+            // Test GA on page load
+            gtag('event', 'page_view', {
+              page_title: document.title,
+              page_location: window.location.href
+            });
           `}
         </Script>
       </head>
