@@ -1,6 +1,6 @@
-// Unified SEO Configuration Module
+// Enhanced SEO Configuration Module
 // This module centralizes all SEO-related content to ensure DRY principles
-// and easy maintenance across all projects
+// and easy maintenance across all projects with AI-optimized content
 
 export interface SEOConfig {
   // Basic Meta Information
@@ -29,6 +29,14 @@ export interface SEOConfig {
   // Verification
   googleVerification?: string;
   
+  // Hero Content
+  hero: {
+    headline: string;
+    subheadline: string;
+    cta: string;
+    badge: string;
+  };
+  
   // Structured Data
   structuredData: {
     organization: any;
@@ -37,17 +45,16 @@ export interface SEOConfig {
   };
 }
 
-// Base SEO configurations for each project
+// Enhanced SEO configurations for each project
 export const SEO_CONFIGS: Record<string, SEOConfig> = {
   playful: {
-    title: "Playful by Smarlify - Ultimate Gaming Hub | Free Web Games",
-    description: "Experience the ultimate gaming hub with Traffic Run, Crossy Road, Space Shooter, and more. Play amazing games built with cutting-edge web technologies like Three.js, WebGL, and Unity 3D. Free browser games for all ages.",
+    title: "Playful by Smarlify - Free Online Games Hub | Traffic Run, Crossy Road, Space Shooter",
+    description: "Play amazing free browser games including Traffic Run, Crossy Road, and Space Shooter. Built with Three.js, WebGL, and Unity 3D. No downloads required - instant play in your browser. Perfect for casual gaming and entertainment.",
     keywords: [
-      "gaming hub", "web games", "browser games", "free games", "online games",
-      "Traffic Run", "Crossy Road", "Space Shooter", "Three.js games", "WebGL games",
-      "Unity 3D games", "Smarlify", "Playful", "interactive games", "arcade games",
-      "mobile games", "desktop games", "game development", "web technologies",
-      "JavaScript games", "HTML5 games", "canvas games", "game engine"
+      "free online games", "browser games", "web games", "Traffic Run game", "Crossy Road game", "Space Shooter game",
+      "Three.js games", "WebGL games", "Unity 3D games", "instant play games", "casual games", "arcade games",
+      "mobile games", "desktop games", "no download games", "playful games", "Smarlify games", "gaming hub",
+      "interactive games", "JavaScript games", "HTML5 games", "canvas games", "game development showcase"
     ],
     author: "Smarlify",
     creator: "Smarlify",
@@ -62,6 +69,12 @@ export const SEO_CONFIGS: Record<string, SEOConfig> = {
     ogImage: "/game-assets/crossy-road.png",
     twitterImage: "/game-assets/crossy-road.png",
     googleVerification: "your-google-verification-code",
+    hero: {
+      headline: "Playful by Smarlify - Ultimate Gaming Hub",
+      subheadline: "Experience cutting-edge browser games built with Three.js, WebGL, and Unity 3D. Play instantly - no downloads required!",
+      cta: "Start Playing Now",
+      badge: "🎮 Free Browser Games"
+    },
     structuredData: {
       organization: {
         "@context": "https://schema.org",
@@ -69,16 +82,22 @@ export const SEO_CONFIGS: Record<string, SEOConfig> = {
         "name": "Smarlify",
         "url": "https://smarlify.co",
         "logo": "https://smarlify.co/smarlify-white.svg",
+        "description": "Technology company creating innovative web experiences and games",
         "sameAs": [
           "https://github.com/smarlify",
           "https://twitter.com/smarlify"
-        ]
+        ],
+        "foundingDate": "2020",
+        "founder": {
+          "@type": "Person",
+          "name": "David Nekovar"
+        }
       },
       website: {
         "@context": "https://schema.org",
         "@type": "WebSite",
         "name": "Playful by Smarlify",
-        "description": "Ultimate gaming hub with free web games",
+        "description": "Free online gaming hub with browser-based games",
         "url": "https://playful.smarlify.co",
         "publisher": {
           "@type": "Organization",
@@ -89,20 +108,26 @@ export const SEO_CONFIGS: Record<string, SEOConfig> = {
           "@type": "SearchAction",
           "target": "https://playful.smarlify.co?q={search_term_string}",
           "query-input": "required name=search_term_string"
+        },
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD",
+          "description": "Free browser games"
         }
       }
     }
   },
 
   smarlify: {
-    title: "Smarlify.co - Freedom Through Smart Living | Crypto & Lifestyle Investments",
-    description: "Achieve freedom through smart living with strategic crypto & precious metals investments, healthy lifestyle choices, and cutting-edge technology solutions. Join 10K+ smart investors building wealth and wellness.",
+    title: "Smarlify.co - Smart Living & Crypto Investment Guide | Financial Freedom Tips",
+    description: "Discover smart living strategies combining crypto investments, precious metals, healthy lifestyle, and technology. Join 10,000+ smart investors building wealth and achieving financial freedom through strategic investments.",
     keywords: [
-      "freedom through smart living", "crypto investment", "bitcoin investment", "ethereum investment",
-      "gold investment", "silver investment", "precious metals", "financial freedom", "wealth building",
-      "healthy lifestyle", "smart lifestyle", "technology solutions", "investment strategies",
-      "portfolio management", "digital assets", "blockchain technology", "decentralized finance",
-      "alternative investments", "wealth preservation", "financial independence", "smart money"
+      "smart living", "crypto investment guide", "bitcoin investment", "ethereum investment", "cryptocurrency portfolio",
+      "gold investment", "silver investment", "precious metals investing", "financial freedom", "wealth building strategies",
+      "healthy lifestyle", "technology solutions", "investment strategies", "portfolio management", "digital assets",
+      "blockchain technology", "decentralized finance", "alternative investments", "wealth preservation", "financial independence",
+      "smart money management", "investment education", "crypto trading", "long-term investing", "passive income"
     ],
     author: "Smarlify.co",
     creator: "Smarlify",
@@ -117,6 +142,12 @@ export const SEO_CONFIGS: Record<string, SEOConfig> = {
     ogImage: "/og-image.jpg",
     twitterImage: "/og-image.jpg",
     googleVerification: "your-google-verification-code",
+    hero: {
+      headline: "Live Smarter, Invest Wiser",
+      subheadline: "Combine freedom, healthy lifestyle, growing investment portfolios in crypto & precious metals, and cutting-edge technology to transform your life.",
+      cta: "Start Your Journey",
+      badge: "Freedom Through Smart Living 🏝️"
+    },
     structuredData: {
       organization: {
         "@context": "https://schema.org",
@@ -124,7 +155,7 @@ export const SEO_CONFIGS: Record<string, SEOConfig> = {
         "name": "Smarlify",
         "url": "https://smarlify.co",
         "logo": "https://smarlify.co/smarlify-white.svg",
-        "description": "Freedom through smart living - crypto investments, lifestyle, and technology",
+        "description": "Smart living and investment education platform focusing on crypto, precious metals, and lifestyle optimization",
         "sameAs": [
           "https://github.com/smarlify",
           "https://twitter.com/smarlify"
@@ -133,31 +164,40 @@ export const SEO_CONFIGS: Record<string, SEOConfig> = {
           "@type": "ContactPoint",
           "contactType": "customer service",
           "email": "hello@smarlify.co"
+        },
+        "foundingDate": "2020",
+        "founder": {
+          "@type": "Person",
+          "name": "David Nekovar"
         }
       },
       website: {
         "@context": "https://schema.org",
         "@type": "WebSite",
         "name": "Smarlify.co",
-        "description": "Freedom through smart living",
+        "description": "Smart living and investment education platform",
         "url": "https://smarlify.co",
         "publisher": {
           "@type": "Organization",
           "name": "Smarlify"
+        },
+        "about": {
+          "@type": "Thing",
+          "name": "Smart Living and Investment Education"
         }
       }
     }
   },
 
   davidnekovar: {
-    title: "David Nekovar - Full-Stack Developer & Tech Entrepreneur | Portfolio",
-    description: "Experienced full-stack developer specializing in React, Node.js, TypeScript, and modern web technologies. Building innovative solutions for startups and enterprises. View my portfolio and get in touch.",
+    title: "David Nekovar - Full-Stack Developer & Tech Entrepreneur | React, Node.js, TypeScript Expert",
+    description: "Experienced full-stack developer specializing in React, Node.js, TypeScript, and modern web technologies. Building innovative solutions for startups and enterprises. Available for freelance projects and consulting.",
     keywords: [
-      "full-stack developer", "React developer", "Node.js developer", "TypeScript developer",
-      "JavaScript developer", "web developer", "frontend developer", "backend developer",
-      "software engineer", "tech entrepreneur", "portfolio", "freelance developer",
-      "startup developer", "enterprise developer", "web technologies", "modern development",
-      "responsive design", "API development", "database design", "cloud solutions"
+      "full-stack developer", "React developer", "Node.js developer", "TypeScript developer", "JavaScript expert",
+      "web developer", "frontend developer", "backend developer", "software engineer", "tech entrepreneur",
+      "freelance developer", "startup developer", "enterprise developer", "web technologies", "modern development",
+      "responsive design", "API development", "database design", "cloud solutions", "software consulting",
+      "web application development", "mobile app development", "e-commerce development", "SaaS development"
     ],
     author: "David Nekovar",
     creator: "David Nekovar",
@@ -169,9 +209,15 @@ export const SEO_CONFIGS: Record<string, SEOConfig> = {
       site: "@davidnekovar",
       creator: "@davidnekovar"
     },
-    ogImage: "/og-image.jpg",
-    twitterImage: "/og-image.jpg",
+    ogImage: "/og-image.svg",
+    twitterImage: "/og-image.svg",
     googleVerification: "your-google-verification-code",
+    hero: {
+      headline: "Full-Stack Developer & Tech Entrepreneur",
+      subheadline: "Building innovative web solutions with React, Node.js, TypeScript, and modern technologies. Available for freelance projects and consulting.",
+      cta: "Get Started",
+      badge: "Smart Life for Yourself! 🏝️"
+    },
     structuredData: {
       organization: {
         "@context": "https://schema.org",
@@ -179,7 +225,7 @@ export const SEO_CONFIGS: Record<string, SEOConfig> = {
         "name": "David Nekovar",
         "url": "https://davidnekovar.cz",
         "jobTitle": "Full-Stack Developer & Tech Entrepreneur",
-        "description": "Experienced full-stack developer specializing in modern web technologies",
+        "description": "Experienced full-stack developer specializing in modern web technologies and software engineering",
         "sameAs": [
           "https://github.com/davidnekovarcz",
           "https://linkedin.com/in/davidnekovar",
@@ -187,8 +233,21 @@ export const SEO_CONFIGS: Record<string, SEOConfig> = {
         ],
         "knowsAbout": [
           "React", "Node.js", "TypeScript", "JavaScript", "Web Development",
-          "Full-Stack Development", "Software Engineering", "Tech Entrepreneurship"
-        ]
+          "Full-Stack Development", "Software Engineering", "Tech Entrepreneurship",
+          "API Development", "Database Design", "Cloud Computing", "Mobile Development"
+        ],
+        "hasOccupation": {
+          "@type": "Occupation",
+          "name": "Software Developer",
+          "occupationLocation": {
+            "@type": "Country",
+            "name": "Czech Republic"
+          }
+        },
+        "alumniOf": {
+          "@type": "EducationalOrganization",
+          "name": "Technical University"
+        }
       },
       website: {
         "@context": "https://schema.org",
@@ -199,13 +258,17 @@ export const SEO_CONFIGS: Record<string, SEOConfig> = {
         "author": {
           "@type": "Person",
           "name": "David Nekovar"
+        },
+        "about": {
+          "@type": "Thing",
+          "name": "Web Development Services"
         }
       }
     }
   }
 };
 
-// AI-Friendly Content Generator
+// Enhanced AI-Friendly Content Generator
 export class AIContentGenerator {
   static generateGameDescription(gameName: string, technologies: string[]): string {
     return `Play ${gameName} - an exciting ${technologies.join(', ')} game. Experience immersive gameplay with stunning graphics and smooth controls. Perfect for casual gaming and entertainment.`;
@@ -218,9 +281,31 @@ export class AIContentGenerator {
   static generateProjectDescription(project: string, techStack: string[], features: string[]): string {
     return `${project} - A ${techStack.join(', ')} project featuring ${features.join(', ')}. Built with modern web technologies and best practices for optimal performance and user experience.`;
   }
+
+  static generateLongTailKeywords(baseKeywords: string[], modifiers: string[]): string[] {
+    const longTailKeywords: string[] = [];
+    baseKeywords.forEach(base => {
+      modifiers.forEach(modifier => {
+        longTailKeywords.push(`${base} ${modifier}`);
+        longTailKeywords.push(`${modifier} ${base}`);
+      });
+    });
+    return longTailKeywords;
+  }
+
+  static generateFAQContent(questions: string[], answers: string[]): any[] {
+    return questions.map((question, index) => ({
+      "@type": "Question",
+      "name": question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": answers[index] || "Contact us for more information."
+      }
+    }));
+  }
 }
 
-// SEO Helper Functions
+// Enhanced SEO Helper Functions
 export class SEOHelpers {
   static generateMetaTags(config: SEOConfig, additionalTags: Record<string, string> = {}) {
     return {
@@ -273,9 +358,22 @@ export class SEOHelpers {
       }))
     ];
   }
+
+  static generateBreadcrumbStructuredData(items: Array<{name: string, url: string}>): any {
+    return {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": items.map((item, index) => ({
+        "@type": "ListItem",
+        "position": index + 1,
+        "name": item.name,
+        "item": item.url
+      }))
+    };
+  }
 }
 
-// Export default configurations
+// Export enhanced configurations
 export const PLAYFUL_SEO = SEO_CONFIGS.playful;
 export const SMARLIFY_SEO = SEO_CONFIGS.smarlify;
 export const DAVID_SEO = SEO_CONFIGS.davidnekovar;
