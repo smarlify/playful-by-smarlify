@@ -293,7 +293,7 @@ export class AIContentGenerator {
     return longTailKeywords;
   }
 
-  static generateFAQContent(questions: string[], answers: string[]): any[] {
+  static generateFAQContent(questions: string[], answers: string[]): unknown[] {
     return questions.map((question, index) => ({
       "@type": "Question",
       "name": question,
@@ -359,7 +359,7 @@ export class SEOHelpers {
     ];
   }
 
-  static generateBreadcrumbStructuredData(items: Array<{name: string, url: string}>): any {
+  static generateBreadcrumbStructuredData(items: Array<{name: string, url: string}>): unknown {
     return {
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
