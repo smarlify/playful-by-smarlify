@@ -39,9 +39,9 @@ export interface SEOConfig {
   
   // Structured Data
   structuredData: {
-    organization: any;
-    website: any;
-    breadcrumb?: any;
+    organization: unknown;
+    website: unknown;
+    breadcrumb?: unknown;
   };
 }
 
@@ -334,7 +334,7 @@ export class SEOHelpers {
     };
   }
 
-  static generateStructuredData(config: SEOConfig, additionalData: any[] = []) {
+  static generateStructuredData(config: SEOConfig, additionalData: unknown[] = []) {
     return [
       config.structuredData.organization,
       config.structuredData.website,
