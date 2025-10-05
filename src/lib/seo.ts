@@ -347,13 +347,13 @@ export class SEOHelpers {
       {
         url: config.url,
         lastModified: new Date().toISOString(),
-        changeFrequency: 'weekly',
+        changeFrequency: 'weekly' as const,
         priority: 1
       },
       ...additionalUrls.map(url => ({
         url: `${config.url}${url}`,
         lastModified: new Date().toISOString(),
-        changeFrequency: 'monthly',
+        changeFrequency: 'monthly' as const,
         priority: 0.8
       }))
     ];
