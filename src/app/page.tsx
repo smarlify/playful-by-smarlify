@@ -376,7 +376,7 @@ export default function Home() {
               <div className="space-y-2">
                 <div className="flex justify-center items-center gap-4">
                   <a
-                    href="https://buymeacoffee.com/dave5w"
+                    href="https://buymeacoffee.com/smarlify"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn-gaming inline-flex items-center w-1/3"
