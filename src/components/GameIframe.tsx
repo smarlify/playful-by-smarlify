@@ -1,12 +1,15 @@
 'use client';
 
 import { Game } from '@/types';
-import { ArrowLeft, ExternalLink, RefreshCw } from 'lucide-react';
+import { ArrowLeft, ExternalLink, RefreshCw, Trophy } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import ShareButton from './ShareButton';
+import LeaderboardPopup from './LeaderboardPopup';
+import Leaderboard from './Leaderboard';
 import { trackGamePlayed } from '@/lib/analytics';
 import { initializeFirebaseAuth } from '@/lib/firebase';
+import { isPersonalRecord, submitToLeaderboard, updateUserProfile } from '@/lib/leaderboard';
 
 interface GameIframeProps {
   game: Game;
@@ -16,6 +19,9 @@ export default function GameIframe({ game }: GameIframeProps) {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
+  const [showLeaderboardPopup, setShowLeaderboardPopup] = useState(false);
+  const [showLeaderboard, setShowLeaderboard] = useState(false);
+  const [gameScore, setGameScore] = useState<{ score: number; level?: number } | null>(null);
 
   // Initialize Firebase and track game play on component mount
   useEffect(() => {
@@ -29,6 +35,29 @@ export default function GameIframe({ game }: GameIframeProps) {
     
     initializeAndTrack();
   }, [game.name]);
+
+  // Listen for game events from iframe
+  useEffect(() => {
+    const handleMessage = async (event: MessageEvent) => {
+      // Only accept messages from the game's origin
+      if (event.origin !== new URL(game.url).origin) return;
+
+      if (event.data.type === 'GAME_OVER' && event.data.score !== undefined) {
+        const { score, level } = event.data;
+        
+        // Check if this is a personal record
+        const isRecord = await isPersonalRecord(game.name, score, level);
+        
+        if (isRecord) {
+          setGameScore({ score, level });
+          setShowLeaderboardPopup(true);
+        }
+      }
+    };
+
+    window.addEventListener('message', handleMessage);
+    return () => window.removeEventListener('message', handleMessage);
+  }, [game.name, game.url]);
 
   const handleBack = () => {
     router.push('/');
@@ -49,6 +78,26 @@ export default function GameIframe({ game }: GameIframeProps) {
     setHasError(false);
     // Force iframe reload by changing key
     window.location.reload();
+  };
+
+  const handleLeaderboardSubmit = async (data: { name: string; email?: string }) => {
+    if (!gameScore) return;
+
+    // Update user profile
+    await updateUserProfile(data.name, data.email);
+
+    // Submit to leaderboard
+    await submitToLeaderboard(
+      game.name,
+      gameScore.score,
+      gameScore.level,
+      data.name,
+      data.email
+    );
+  };
+
+  const handleShowLeaderboard = () => {
+    setShowLeaderboard(true);
   };
 
   return (
@@ -75,6 +124,14 @@ export default function GameIframe({ game }: GameIframeProps) {
             </div>
 
             <div className="flex items-center gap-3">
+              <button
+                onClick={handleShowLeaderboard}
+                className="flex items-center gap-2 text-white/80 hover:text-white transition-colors cursor-pointer"
+              >
+                <Trophy className="w-4 h-4" />
+                <span className="hidden sm:inline">Leaderboard</span>
+              </button>
+              
               <ShareButton game={game} />
               
               <button
@@ -153,6 +210,25 @@ export default function GameIframe({ game }: GameIframeProps) {
           sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-presentation"
         />
       </div>
+
+      {/* Leaderboard Popup */}
+      {gameScore && (
+        <LeaderboardPopup
+          isOpen={showLeaderboardPopup}
+          onClose={() => setShowLeaderboardPopup(false)}
+          gameName={game.name}
+          score={gameScore.score}
+          level={gameScore.level || 0}
+          onSubmit={handleLeaderboardSubmit}
+        />
+      )}
+
+      {/* Leaderboard Display */}
+      <Leaderboard
+        isOpen={showLeaderboard}
+        onClose={() => setShowLeaderboard(false)}
+        gameName={game.name}
+      />
     </div>
   );
 }
