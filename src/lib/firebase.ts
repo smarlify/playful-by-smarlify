@@ -39,8 +39,8 @@ export interface UserGameData {
   gameStats: GameStats;
   totalPlays: number;
   mostPlayedGame: string;
-  lastUpdated: any; // Firebase serverTimestamp
-  createdAt: any; // Firebase serverTimestamp
+  lastUpdated: unknown; // Firebase serverTimestamp
+  createdAt: unknown; // Firebase serverTimestamp
 }
 
 /**
@@ -136,7 +136,7 @@ export async function loadGameStatsFromFirebase(): Promise<GameStats> {
 /**
  * Track Firebase Analytics event
  */
-export function trackFirebaseEvent(eventName: string, parameters: Record<string, any> = {}): void {
+export function trackFirebaseEvent(eventName: string, parameters: Record<string, unknown> = {}): void {
   if (analytics) {
     logEvent(analytics, eventName, parameters);
     console.log('Firebase Analytics:', eventName, parameters);

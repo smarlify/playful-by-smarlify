@@ -5,7 +5,6 @@
  */
 
 import { 
-  initializeFirebaseAuth, 
   syncGameStatsWithFirebase, 
   trackFirebaseEvent,
   GameStats 
