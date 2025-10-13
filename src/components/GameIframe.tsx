@@ -2,9 +2,10 @@
 
 import { Game } from '@/types';
 import { ArrowLeft, ExternalLink, RefreshCw } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import ShareButton from './ShareButton';
+import { trackGamePlayed } from '@/lib/analytics';
 
 interface GameIframeProps {
   game: Game;
@@ -14,6 +15,11 @@ export default function GameIframe({ game }: GameIframeProps) {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
+
+  // Track game play on component mount
+  useEffect(() => {
+    trackGamePlayed(game.name);
+  }, [game.name]);
 
   const handleBack = () => {
     router.push('/');
