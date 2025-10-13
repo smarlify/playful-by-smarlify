@@ -1,18 +1,17 @@
 /**
  * Game Analytics Utilities
  * 
- * Tracks game play events and maintains play counts in localStorage
+ * Tracks game play events and maintains play counts in localStorage + Firebase
  */
 
-const STORAGE_KEY = 'playful_game_stats';
+import { 
+  initializeFirebaseAuth, 
+  syncGameStatsWithFirebase, 
+  trackFirebaseEvent,
+  GameStats 
+} from './firebase';
 
-export interface GameStats {
-  [gameName: string]: {
-    playCount: number;
-    lastPlayed: string;
-    firstPlayed: string;
-  };
-}
+const STORAGE_KEY = 'playful_game_stats';
 
 /**
  * Get all game statistics from localStorage
@@ -33,7 +32,7 @@ export function getGameStats(): GameStats {
  * Save game statistics to localStorage
  */
 function saveGameStats(stats: GameStats): void {
-  if (typeof window === 'undefined') return;
+  if (typeof window !== 'undefined') return;
   
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(stats));
@@ -45,8 +44,9 @@ function saveGameStats(stats: GameStats): void {
 /**
  * Track when a game is played
  * Increments play count and updates timestamps
+ * Syncs with Firebase automatically
  */
-export function trackGamePlayed(gameName: string): void {
+export async function trackGamePlayed(gameName: string): Promise<void> {
   const stats = getGameStats();
   const now = new Date().toISOString();
   
@@ -80,6 +80,27 @@ export function trackGamePlayed(gameName: string): void {
       first_played: stats[gameName].firstPlayed,
       last_played: stats[gameName].lastPlayed
     });
+  }
+
+  // Track with Firebase Analytics
+  trackFirebaseEvent('play_game', {
+    game_name: gameName,
+    timestamp: now,
+    play_count: stats[gameName].playCount
+  });
+
+  trackFirebaseEvent('game_played_total', {
+    game_name: gameName,
+    play_count: stats[gameName].playCount,
+    first_played: stats[gameName].firstPlayed,
+    last_played: stats[gameName].lastPlayed
+  });
+
+  // Sync with Firebase (async, don't wait)
+  try {
+    await syncGameStatsWithFirebase();
+  } catch (error) {
+    console.error('Error syncing with Firebase:', error);
   }
 }
 

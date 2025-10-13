@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import ShareButton from './ShareButton';
 import { trackGamePlayed } from '@/lib/analytics';
+import { initializeFirebaseAuth } from '@/lib/firebase';
 
 interface GameIframeProps {
   game: Game;
@@ -16,9 +17,17 @@ export default function GameIframe({ game }: GameIframeProps) {
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
 
-  // Track game play on component mount
+  // Initialize Firebase and track game play on component mount
   useEffect(() => {
-    trackGamePlayed(game.name);
+    const initializeAndTrack = async () => {
+      // Initialize Firebase auth (creates anonymous user if needed)
+      await initializeFirebaseAuth();
+      
+      // Track game play
+      await trackGamePlayed(game.name);
+    };
+    
+    initializeAndTrack();
   }, [game.name]);
 
   const handleBack = () => {
