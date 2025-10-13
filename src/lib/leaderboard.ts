@@ -27,7 +27,7 @@ export interface LeaderboardEntry {
   score: number;
   level?: number;
   gameName: string;
-  timestamp: any; // Firebase serverTimestamp
+  timestamp: unknown; // Firebase serverTimestamp
   crossDomainUserId: string;
   isPersonalRecord: boolean;
 }
@@ -44,8 +44,7 @@ export interface PersonalRecord {
  */
 export async function isPersonalRecord(
   gameName: string, 
-  score: number, 
-  level?: number
+  score: number
 ): Promise<boolean> {
   try {
     const crossDomainUserId = getCrossDomainUserId();

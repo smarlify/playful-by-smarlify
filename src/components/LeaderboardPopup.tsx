@@ -137,7 +137,7 @@ export default function LeaderboardPopup({
                 disabled={isSubmitting}
               />
               <p className="text-xs text-muted-foreground mt-1">
-                We'll notify you if someone beats your score!
+                We&apos;ll notify you if someone beats your score!
               </p>
             </div>
 

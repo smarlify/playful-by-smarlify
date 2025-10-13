@@ -46,7 +46,7 @@ export default function GameIframe({ game }: GameIframeProps) {
         const { score, level } = event.data;
         
         // Check if this is a personal record
-        const isRecord = await isPersonalRecord(game.name, score, level);
+        const isRecord = await isPersonalRecord(game.name, score);
         
         if (isRecord) {
           setGameScore({ score, level });

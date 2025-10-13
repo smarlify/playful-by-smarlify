@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Trophy, Medal, Star, Users, Crown, X } from 'lucide-react';
 
 interface LeaderboardEntry {
@@ -25,13 +25,7 @@ export default function Leaderboard({ gameName, isOpen, onClose }: LeaderboardPr
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-  useEffect(() => {
-    if (isOpen) {
-      loadLeaderboard();
-    }
-  }, [isOpen, gameName]);
-
-  const loadLeaderboard = async () => {
+  const loadLeaderboard = useCallback(async () => {
     setLoading(true);
     setError('');
     
@@ -67,7 +61,13 @@ export default function Leaderboard({ gameName, isOpen, onClose }: LeaderboardPr
     } finally {
       setLoading(false);
     }
-  };
+  }, [gameName]);
+
+  useEffect(() => {
+    if (isOpen) {
+      loadLeaderboard();
+    }
+  }, [isOpen, loadLeaderboard]);
 
   const getRankIcon = (index: number) => {
     switch (index) {
