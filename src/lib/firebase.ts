@@ -4,7 +4,7 @@
  * Shared Firebase setup for all Playful games
  */
 
-import { initializeApp } from 'firebase/app';
+import { initializeApp, getApp, getApps } from 'firebase/app';
 import { getAuth, signInAnonymously, onAuthStateChanged, User } from 'firebase/auth';
 import { getFirestore, doc, setDoc, getDoc, serverTimestamp } from 'firebase/firestore';
 import { getAnalytics, logEvent } from 'firebase/analytics';
@@ -21,7 +21,7 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
 export const auth = getAuth(app);
 export const db = getFirestore(app);
 export const analytics = typeof window !== 'undefined' ? getAnalytics(app) : null;
@@ -47,23 +47,21 @@ export interface UserGameData {
  * Initialize Firebase authentication
  * Creates anonymous user if not already authenticated
  */
-export async function initializeFirebaseAuth(): Promise<User | null> {
+export async function initializeFirebaseAuth(): Promise<void> {
   return new Promise((resolve) => {
-    const unsubscribe = onAuthStateChanged(auth, async (user) => {
-      unsubscribe();
-      
+    onAuthStateChanged(auth, async (user) => {
       if (user) {
-        console.log('Firebase: User authenticated', user.uid);
-        resolve(user);
+        console.log('Firebase User:', user.uid, user.isAnonymous ? '(Anonymous)' : '(Authenticated)');
+        resolve();
       } else {
+        // No user signed in, sign in anonymously
         try {
-          console.log('Firebase: Creating anonymous user...');
-          const result = await signInAnonymously(auth);
-          console.log('Firebase: Anonymous user created', result.user.uid);
-          resolve(result.user);
-        } catch (error) {
-          console.error('Firebase: Error creating anonymous user', error);
-          resolve(null);
+          const userCredential = await signInAnonymously(auth);
+          console.log('Signed in anonymously:', userCredential.user.uid);
+          resolve();
+        } catch (error: any) {
+          console.error('Error signing in anonymously:', error.message);
+          resolve(); // Resolve even on error to not block the app
         }
       }
     });
