@@ -44,6 +44,34 @@ export interface UserGameData {
 }
 
 /**
+ * Get or create a cross-domain analytics ID
+ * This allows us to track the same user across different game domains
+ */
+export function getCrossDomainAnalyticsId(): string {
+  const STORAGE_KEY = 'playful_analytics_id';
+  
+  if (typeof window === 'undefined') return '';
+  
+  try {
+    let analyticsId = localStorage.getItem(STORAGE_KEY);
+    
+    if (!analyticsId) {
+      // Generate a new analytics ID
+      analyticsId = 'analytics_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+      localStorage.setItem(STORAGE_KEY, analyticsId);
+      console.log('Created new cross-domain analytics ID:', analyticsId);
+    } else {
+      console.log('Using existing cross-domain analytics ID:', analyticsId);
+    }
+    
+    return analyticsId;
+  } catch (error) {
+    console.error('Error managing analytics ID:', error);
+    return 'analytics_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+  }
+}
+
+/**
  * Initialize Firebase authentication
  * Creates anonymous user if not already authenticated
  */
@@ -52,12 +80,34 @@ export async function initializeFirebaseAuth(): Promise<void> {
     onAuthStateChanged(auth, async (user) => {
       if (user) {
         console.log('Firebase User:', user.uid, user.isAnonymous ? '(Anonymous)' : '(Authenticated)');
+        
+        // Set cross-domain analytics ID as user property
+        const analyticsId = getCrossDomainAnalyticsId();
+        if (analytics) {
+          // Set user properties for cross-domain tracking
+          logEvent(analytics, 'user_property_set', {
+            cross_domain_analytics_id: analyticsId,
+            domain: window.location.hostname
+          });
+        }
+        
         resolve();
       } else {
         // No user signed in, sign in anonymously
         try {
           const userCredential = await signInAnonymously(auth);
           console.log('Signed in anonymously:', userCredential.user.uid);
+          
+          // Set cross-domain analytics ID as user property
+          const analyticsId = getCrossDomainAnalyticsId();
+          if (analytics) {
+            // Set user properties for cross-domain tracking
+            logEvent(analytics, 'user_property_set', {
+              cross_domain_analytics_id: analyticsId,
+              domain: window.location.hostname
+            });
+          }
+          
           resolve();
         } catch (error: unknown) {
           console.error('Error signing in anonymously:', error instanceof Error ? error.message : String(error));
@@ -136,8 +186,16 @@ export async function loadGameStatsFromFirebase(): Promise<GameStats> {
  */
 export function trackFirebaseEvent(eventName: string, parameters: Record<string, unknown> = {}): void {
   if (analytics) {
-    logEvent(analytics, eventName, parameters);
-    console.log('Firebase Analytics:', eventName, parameters);
+    // Add cross-domain analytics ID to all events
+    const analyticsId = getCrossDomainAnalyticsId();
+    const enhancedParameters = {
+      ...parameters,
+      cross_domain_analytics_id: analyticsId,
+      domain: window.location.hostname
+    };
+    
+    logEvent(analytics, eventName, enhancedParameters);
+    console.log('Firebase Analytics:', eventName, enhancedParameters);
   }
 }
 
