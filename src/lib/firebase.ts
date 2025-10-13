@@ -5,7 +5,7 @@
  */
 
 import { initializeApp, getApp, getApps } from 'firebase/app';
-import { getAuth, signInAnonymously, onAuthStateChanged, User } from 'firebase/auth';
+import { getAuth, signInAnonymously, onAuthStateChanged } from 'firebase/auth';
 import { getFirestore, doc, setDoc, getDoc, serverTimestamp } from 'firebase/firestore';
 import { getAnalytics, logEvent } from 'firebase/analytics';
 
@@ -59,8 +59,8 @@ export async function initializeFirebaseAuth(): Promise<void> {
           const userCredential = await signInAnonymously(auth);
           console.log('Signed in anonymously:', userCredential.user.uid);
           resolve();
-        } catch (error: any) {
-          console.error('Error signing in anonymously:', error.message);
+        } catch (error: unknown) {
+          console.error('Error signing in anonymously:', error instanceof Error ? error.message : String(error));
           resolve(); // Resolve even on error to not block the app
         }
       }
