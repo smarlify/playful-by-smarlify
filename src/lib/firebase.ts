@@ -44,36 +44,36 @@ export interface UserGameData {
 }
 
 /**
- * Get or create a cross-domain analytics ID
- * This allows us to track the same user across different game domains
+ * Get or create a cross-domain user ID
+ * This allows us to use the same Firebase user across all domains
  */
-export function getCrossDomainAnalyticsId(): string {
-  const STORAGE_KEY = 'playful_analytics_id';
+export function getCrossDomainUserId(): string {
+  const STORAGE_KEY = 'playful_user_id';
   
   if (typeof window === 'undefined') return '';
   
   try {
-    let analyticsId = localStorage.getItem(STORAGE_KEY);
+    let userId = localStorage.getItem(STORAGE_KEY);
     
-    if (!analyticsId) {
-      // Generate a new analytics ID
-      analyticsId = 'analytics_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
-      localStorage.setItem(STORAGE_KEY, analyticsId);
-      console.log('Created new cross-domain analytics ID:', analyticsId);
+    if (!userId) {
+      // Generate a new user ID that will be used across all domains
+      userId = 'user_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+      localStorage.setItem(STORAGE_KEY, userId);
+      console.log('Created new cross-domain user ID:', userId);
     } else {
-      console.log('Using existing cross-domain analytics ID:', analyticsId);
+      console.log('Using existing cross-domain user ID:', userId);
     }
     
-    return analyticsId;
+    return userId;
   } catch (error) {
-    console.error('Error managing analytics ID:', error);
-    return 'analytics_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+    console.error('Error managing user ID:', error);
+    return 'user_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
   }
 }
 
 /**
  * Initialize Firebase authentication
- * Creates anonymous user if not already authenticated
+ * Creates a consistent user across all domains using localStorage
  */
 export async function initializeFirebaseAuth(): Promise<void> {
   return new Promise((resolve) => {
@@ -81,15 +81,18 @@ export async function initializeFirebaseAuth(): Promise<void> {
       if (user) {
         console.log('Firebase User:', user.uid, user.isAnonymous ? '(Anonymous)' : '(Authenticated)');
         
-        // Set cross-domain analytics ID as user property
-        const analyticsId = getCrossDomainAnalyticsId();
+        // Set cross-domain user ID as user property
+        const crossDomainUserId = getCrossDomainUserId();
         if (analytics) {
           // Set user properties for cross-domain tracking
           logEvent(analytics, 'user_property_set', {
-            cross_domain_analytics_id: analyticsId,
+            cross_domain_user_id: crossDomainUserId,
             domain: window.location.hostname
           });
         }
+        
+        // Create/update shared user document in Firestore
+        await createSharedUserDocument(crossDomainUserId, user.uid);
         
         resolve();
       } else {
@@ -98,15 +101,18 @@ export async function initializeFirebaseAuth(): Promise<void> {
           const userCredential = await signInAnonymously(auth);
           console.log('Signed in anonymously:', userCredential.user.uid);
           
-          // Set cross-domain analytics ID as user property
-          const analyticsId = getCrossDomainAnalyticsId();
+          // Set cross-domain user ID as user property
+          const crossDomainUserId = getCrossDomainUserId();
           if (analytics) {
             // Set user properties for cross-domain tracking
             logEvent(analytics, 'user_property_set', {
-              cross_domain_analytics_id: analyticsId,
+              cross_domain_user_id: crossDomainUserId,
               domain: window.location.hostname
             });
           }
+          
+          // Create/update shared user document in Firestore
+          await createSharedUserDocument(crossDomainUserId, userCredential.user.uid);
           
           resolve();
         } catch (error: unknown) {
@@ -116,6 +122,42 @@ export async function initializeFirebaseAuth(): Promise<void> {
       }
     });
   });
+}
+
+/**
+ * Create or update a shared user document in Firestore
+ * This allows us to track the same logical user across different Firebase users
+ */
+async function createSharedUserDocument(crossDomainUserId: string, firebaseUserId: string): Promise<void> {
+  try {
+    const sharedUserRef = doc(db, 'sharedUsers', crossDomainUserId);
+    const sharedUserDoc = await getDoc(sharedUserRef);
+    
+    const userData = {
+      crossDomainUserId,
+      firebaseUsers: {
+        [window.location.hostname]: firebaseUserId
+      },
+      domains: [window.location.hostname],
+      lastSeen: serverTimestamp(),
+      createdAt: sharedUserDoc.exists() ? sharedUserDoc.data().createdAt : serverTimestamp()
+    };
+    
+    // If document exists, merge the data
+    if (sharedUserDoc.exists()) {
+      const existingData = sharedUserDoc.data();
+      userData.firebaseUsers = {
+        ...existingData.firebaseUsers,
+        [window.location.hostname]: firebaseUserId
+      };
+      userData.domains = [...new Set([...existingData.domains, window.location.hostname])];
+    }
+    
+    await setDoc(sharedUserRef, userData, { merge: true });
+    console.log('Shared user document updated:', crossDomainUserId);
+  } catch (error) {
+    console.error('Error creating shared user document:', error);
+  }
 }
 
 /**
@@ -186,11 +228,11 @@ export async function loadGameStatsFromFirebase(): Promise<GameStats> {
  */
 export function trackFirebaseEvent(eventName: string, parameters: Record<string, unknown> = {}): void {
   if (analytics) {
-    // Add cross-domain analytics ID to all events
-    const analyticsId = getCrossDomainAnalyticsId();
+    // Add cross-domain user ID to all events
+    const crossDomainUserId = getCrossDomainUserId();
     const enhancedParameters = {
       ...parameters,
-      cross_domain_analytics_id: analyticsId,
+      cross_domain_user_id: crossDomainUserId,
       domain: window.location.hostname
     };
     
