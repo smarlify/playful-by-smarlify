@@ -32,6 +32,7 @@ export interface GameStats {
     playCount: number;
     lastPlayed: string;
     firstPlayed: string;
+    maxLevel?: number;
   };
 }
 
