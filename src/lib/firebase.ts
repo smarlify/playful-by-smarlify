@@ -8,6 +8,7 @@ import { initializeApp, getApp, getApps } from 'firebase/app';
 import { getAuth, signInAnonymously, onAuthStateChanged } from 'firebase/auth';
 import { getFirestore, doc, setDoc, getDoc, serverTimestamp } from 'firebase/firestore';
 import { getAnalytics, logEvent } from 'firebase/analytics';
+import { getDatabase } from 'firebase/database';
 
 // Firebase configuration
 const firebaseConfig = {
@@ -17,13 +18,15 @@ const firebaseConfig = {
   storageBucket: "smarlify-api.firebasestorage.app",
   messagingSenderId: "117162085061",
   appId: "1:117162085061:web:cd64d13eff75941de17eac",
-  measurementId: "G-1JZRLPFQVT"
+  measurementId: "G-1JZRLPFQVT",
+  databaseURL: "https://smarlify-api-default-rtdb.firebaseio.com"
 };
 
 // Initialize Firebase
 const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
 export const auth = getAuth(app);
 export const db = getFirestore(app);
+export const database = typeof window !== 'undefined' ? getDatabase(app) : null;
 export const analytics = typeof window !== 'undefined' ? getAnalytics(app) : null;
 
 // Game statistics interface

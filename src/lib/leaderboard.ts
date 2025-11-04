@@ -1,23 +1,18 @@
 /**
  * Leaderboard Service
- * 
+ *
  * Handles leaderboard operations including personal record detection,
  * score submission, and leaderboard queries
  */
 
-import { db } from './firebase';
-import { 
-  collection, 
-  doc, 
-  setDoc, 
-  getDoc, 
-  query, 
-  where, 
-  orderBy, 
-  limit, 
-  getDocs,
-  serverTimestamp 
+import { db, database } from './firebase';
+import {
+  doc,
+  setDoc,
+  getDoc,
+  serverTimestamp
 } from 'firebase/firestore';
+import { ref, push, query, orderByChild, limitToLast, get } from 'firebase/database';
 import { getCrossDomainUserId } from './firebase';
 
 export interface LeaderboardEntry {
@@ -27,9 +22,8 @@ export interface LeaderboardEntry {
   score: number;
   level?: number;
   gameName: string;
-  timestamp: unknown; // Firebase serverTimestamp
+  timestamp: number | string; // Unix timestamp (number) or ISO string
   crossDomainUserId: string;
-  isPersonalRecord: boolean;
 }
 
 export interface PersonalRecord {
@@ -86,28 +80,32 @@ export async function submitToLeaderboard(
   email?: string
 ): Promise<void> {
   try {
+    if (!database) {
+      throw new Error('Database not initialized');
+    }
+
     const crossDomainUserId = getCrossDomainUserId();
     if (!crossDomainUserId) {
       throw new Error('No cross-domain user ID available');
     }
 
-    // Create leaderboard entry
-    const leaderboardEntry: Omit<LeaderboardEntry, 'id'> = {
+    // Create leaderboard entry (matching your game's format)
+    const leaderboardEntry = {
       name,
       email,
       score,
       level,
       gameName,
-      timestamp: serverTimestamp(),
-      crossDomainUserId,
-      isPersonalRecord: true
+      timestamp: Date.now(), // Use timestamp like your game apps
+      crossDomainUserId
     };
 
-    // Add to leaderboard collection
-    const leaderboardRef = collection(db, 'leaderboard');
-    await setDoc(doc(leaderboardRef), leaderboardEntry);
+    // Add to Realtime Database using the same structure as your game apps
+    // Data structure: {gameName}/leaderboard/{pushId}
+    const leaderboardRef = ref(database, `${gameName}/leaderboard`);
+    await push(leaderboardRef, leaderboardEntry);
 
-    // Update personal record
+    // Update personal record in Firestore (for user-specific tracking)
     await updatePersonalRecord(gameName, score, level);
 
     console.log('Score submitted to leaderboard:', leaderboardEntry);
@@ -156,25 +154,38 @@ export async function updatePersonalRecord(
  */
 export async function getLeaderboard(gameName: string, limitCount: number = 10): Promise<LeaderboardEntry[]> {
   try {
-    const leaderboardRef = collection(db, 'leaderboard');
-    const q = query(
+    if (!database) {
+      console.error('Database not initialized');
+      return [];
+    }
+
+    // Query the leaderboard from Realtime Database
+    const leaderboardRef = ref(database, `${gameName}/leaderboard`);
+    const leaderboardQuery = query(
       leaderboardRef,
-      where('gameName', '==', gameName),
-      orderBy('score', 'desc'),
-      limit(limitCount)
+      orderByChild('score'),
+      limitToLast(limitCount)
     );
 
-    const querySnapshot = await getDocs(q);
+    const snapshot = await get(leaderboardQuery);
     const entries: LeaderboardEntry[] = [];
 
-    querySnapshot.forEach((doc) => {
-      const data = doc.data();
-      entries.push({
-        id: doc.id,
-        ...data,
-        timestamp: data.timestamp?.toDate?.()?.toISOString() || data.timestamp
-      } as LeaderboardEntry);
-    });
+    if (snapshot.exists()) {
+      const data = snapshot.val();
+      Object.entries(data).forEach(([key, value]) => {
+        const entry = value as any; // Raw data from Firebase
+        entries.push({
+          id: key,
+          ...entry,
+          timestamp: typeof entry.timestamp === 'number'
+            ? new Date(entry.timestamp).toISOString()
+            : entry.timestamp
+        } as LeaderboardEntry);
+      });
+
+      // Sort by score descending (limitToLast returns in ascending order)
+      entries.sort((a, b) => b.score - a.score);
+    }
 
     return entries;
   } catch (error) {

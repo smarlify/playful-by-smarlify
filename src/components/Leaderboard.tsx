@@ -28,36 +28,52 @@ export default function Leaderboard({ gameName, isOpen, onClose }: LeaderboardPr
   const loadLeaderboard = useCallback(async () => {
     setLoading(true);
     setError('');
-    
+
     try {
-      // Import Firebase functions dynamically
-      const { db } = await import('@/lib/firebase');
-      const { collection, query, where, orderBy, limit, getDocs } = await import('firebase/firestore');
-      
-      const leaderboardRef = collection(db, 'leaderboard');
-      const q = query(
+      // Import Firebase Realtime Database functions dynamically
+      const { database } = await import('@/lib/firebase');
+
+      if (!database) {
+        setError('Database not initialized. Please refresh the page.');
+        setLoading(false);
+        return;
+      }
+
+      const { ref, query, orderByChild, limitToLast, get } = await import('firebase/database');
+
+      // Query the leaderboard for this specific game
+      // Data structure: {gameName}/leaderboard/{pushId}
+      const leaderboardRef = ref(database, `${gameName}/leaderboard`);
+      const leaderboardQuery = query(
         leaderboardRef,
-        where('gameName', '==', gameName),
-        orderBy('score', 'desc'),
-        limit(10)
+        orderByChild('score'),
+        limitToLast(10) // Get top 10 scores
       );
-      
-      const querySnapshot = await getDocs(q);
+
+      const snapshot = await get(leaderboardQuery);
       const leaderboardData: LeaderboardEntry[] = [];
-      
-      querySnapshot.forEach((doc) => {
-        const data = doc.data();
-        leaderboardData.push({
-          id: doc.id,
-          ...data,
-          timestamp: data.timestamp?.toDate?.()?.toISOString() || data.timestamp
-        } as LeaderboardEntry);
-      });
-      
+
+      if (snapshot.exists()) {
+        const data = snapshot.val();
+        Object.entries(data).forEach(([key, value]) => {
+          const entry = value as any; // Raw data from Firebase
+          leaderboardData.push({
+            id: key,
+            ...entry,
+            timestamp: typeof entry.timestamp === 'number'
+              ? new Date(entry.timestamp).toISOString()
+              : entry.timestamp
+          } as LeaderboardEntry);
+        });
+
+        // Sort by score descending (limitToLast returns in ascending order)
+        leaderboardData.sort((a, b) => b.score - a.score);
+      }
+
       setEntries(leaderboardData);
     } catch (err) {
       console.error('Error loading leaderboard:', err);
-      setError('Failed to load leaderboard');
+      setError('Failed to load leaderboard. Please try again.');
     } finally {
       setLoading(false);
     }
