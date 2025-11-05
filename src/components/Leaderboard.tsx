@@ -25,35 +25,36 @@ export default function Leaderboard({ gameName, isOpen, onClose }: LeaderboardPr
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
+  const mapGameToId = (name: string): 'crossy-road' | 'traffic-run' | null => {
+    if (name.toLowerCase().includes('crossy')) return 'crossy-road';
+    if (name.toLowerCase().includes('traffic')) return 'traffic-run';
+    return null;
+  };
+
   const loadLeaderboard = useCallback(async () => {
     setLoading(true);
     setError('');
-    
+
     try {
-      // Import Firebase functions dynamically
-      const { db } = await import('@/lib/firebase');
-      const { collection, query, where, orderBy, limit, getDocs } = await import('firebase/firestore');
-      
-      const leaderboardRef = collection(db, 'leaderboard');
-      const q = query(
-        leaderboardRef,
-        where('gameName', '==', gameName),
-        orderBy('score', 'desc'),
-        limit(10)
-      );
-      
-      const querySnapshot = await getDocs(q);
-      const leaderboardData: LeaderboardEntry[] = [];
-      
-      querySnapshot.forEach((doc) => {
-        const data = doc.data();
-        leaderboardData.push({
-          id: doc.id,
-          ...data,
-          timestamp: data.timestamp?.toDate?.()?.toISOString() || data.timestamp
-        } as LeaderboardEntry);
-      });
-      
+      const { getTopScores } = await import('@/lib/leaderboardClient');
+
+      const gameId = mapGameToId(gameName);
+      if (!gameId) {
+        setError('Game not supported');
+        return;
+      }
+
+      const scores = await getTopScores(gameId, 10);
+
+      const leaderboardData: LeaderboardEntry[] = scores.map((entry, idx) => ({
+        id: `entry-${idx}`,
+        name: entry.name,
+        score: entry.score,
+        gameName,
+        timestamp: entry.createdAt?.toDate?.()?.toISOString() || entry.createdAt || new Date().toISOString(),
+        crossDomainUserId: entry.userId
+      }));
+
       setEntries(leaderboardData);
     } catch (err) {
       console.error('Error loading leaderboard:', err);
@@ -161,15 +162,15 @@ export default function Leaderboard({ gameName, isOpen, onClose }: LeaderboardPr
                 <div
                   key={entry.id}
                   className={`flex items-center gap-4 p-4 rounded-lg border transition-colors ${
-                    index < 3 
-                      ? 'bg-primary/5 border-primary/20' 
+                    index < 3
+                      ? 'bg-primary/5 border-primary/20'
                       : 'bg-muted/30 border-border hover:bg-muted/50'
                   }`}
                 >
                   <div className="flex-shrink-0">
                     {getRankIcon(index)}
                   </div>
-                  
+
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 mb-1">
                       <h3 className="font-semibold text-foreground truncate">
@@ -183,7 +184,7 @@ export default function Leaderboard({ gameName, isOpen, onClose }: LeaderboardPr
                       {formatDate(entry.timestamp)}
                     </p>
                   </div>
-                  
+
                   <div className="flex-shrink-0 text-right">
                     <div className="font-bold text-foreground">
                       {formatScore(entry)}
