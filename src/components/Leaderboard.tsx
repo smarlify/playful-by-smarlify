@@ -185,7 +185,7 @@ export default function Leaderboard({ gameName, isOpen, onClose }: LeaderboardPr
                   <div className="flex-shrink-0">
                     {getRankIcon(index)}
                   </div>
-                  
+
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 mb-1">
                       <h3 className="font-semibold text-foreground truncate">
@@ -199,7 +199,7 @@ export default function Leaderboard({ gameName, isOpen, onClose }: LeaderboardPr
                       {formatDate(entry.timestamp)}
                     </p>
                   </div>
-                  
+
                   <div className="flex-shrink-0 text-right">
                     <div className="font-bold text-foreground">
                       {formatScore(entry)}
@@ -216,7 +216,6 @@ export default function Leaderboard({ gameName, isOpen, onClose }: LeaderboardPr
           )}
         </div>
 
-        {/* Footer */}
         <div className="p-6 border-t border-border bg-muted/20">
           <p className="text-xs text-muted-foreground text-center">
             Leaderboard updates in real-time. Achieve a new personal record to claim your spot!
