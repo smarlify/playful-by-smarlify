@@ -1,6 +1,6 @@
 /**
  * Firebase Configuration and Analytics
- * 
+ *
  * Shared Firebase setup for all Playful games
  */
 
@@ -8,7 +8,6 @@ import { initializeApp, getApp, getApps } from 'firebase/app';
 import { getAuth, signInAnonymously, onAuthStateChanged } from 'firebase/auth';
 import { getFirestore, doc, setDoc, getDoc, serverTimestamp } from 'firebase/firestore';
 import { getAnalytics, logEvent } from 'firebase/analytics';
-import { getDatabase } from 'firebase/database';
 
 // Firebase configuration
 const firebaseConfig = {
@@ -18,15 +17,13 @@ const firebaseConfig = {
   storageBucket: "smarlify-api.firebasestorage.app",
   messagingSenderId: "117162085061",
   appId: "1:117162085061:web:cd64d13eff75941de17eac",
-  measurementId: "G-1JZRLPFQVT",
-  databaseURL: "https://smarlify-api-default-rtdb.firebaseio.com"
+  measurementId: "G-1JZRLPFQVT"
 };
 
 // Initialize Firebase
 const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
 export const auth = getAuth(app);
 export const db = getFirestore(app);
-export const database = typeof window !== 'undefined' ? getDatabase(app) : null;
 export const analytics = typeof window !== 'undefined' ? getAnalytics(app) : null;
 
 // Game statistics interface
@@ -53,12 +50,12 @@ export interface UserGameData {
  */
 export function getCrossDomainUserId(): string {
   const STORAGE_KEY = 'playful_user_id';
-  
+
   if (typeof window === 'undefined') return '';
-  
+
   try {
     let userId = localStorage.getItem(STORAGE_KEY);
-    
+
     if (!userId) {
       // Generate a new user ID that will be used across all domains
       userId = 'user_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
@@ -67,7 +64,7 @@ export function getCrossDomainUserId(): string {
     } else {
       console.log('Using existing cross-domain user ID:', userId);
     }
-    
+
     return userId;
   } catch (error) {
     console.error('Error managing user ID:', error);
@@ -84,7 +81,7 @@ export async function initializeFirebaseAuth(): Promise<void> {
     onAuthStateChanged(auth, async (user) => {
       if (user) {
         console.log('Firebase User:', user.uid, user.isAnonymous ? '(Anonymous)' : '(Authenticated)');
-        
+
         // Set cross-domain user ID as user property
         const crossDomainUserId = getCrossDomainUserId();
         if (analytics) {
@@ -94,17 +91,17 @@ export async function initializeFirebaseAuth(): Promise<void> {
             domain: window.location.hostname
           });
         }
-        
+
         // Create/update shared user document in Firestore
         await createSharedUserDocument(crossDomainUserId, user.uid);
-        
+
         resolve();
       } else {
         // No user signed in, sign in anonymously
         try {
           const userCredential = await signInAnonymously(auth);
           console.log('Signed in anonymously:', userCredential.user.uid);
-          
+
           // Set cross-domain user ID as user property
           const crossDomainUserId = getCrossDomainUserId();
           if (analytics) {
@@ -114,10 +111,10 @@ export async function initializeFirebaseAuth(): Promise<void> {
               domain: window.location.hostname
             });
           }
-          
+
           // Create/update shared user document in Firestore
           await createSharedUserDocument(crossDomainUserId, userCredential.user.uid);
-          
+
           resolve();
         } catch (error: unknown) {
           console.error('Error signing in anonymously:', error instanceof Error ? error.message : String(error));
@@ -136,7 +133,7 @@ async function createSharedUserDocument(crossDomainUserId: string, firebaseUserI
   try {
     const sharedUserRef = doc(db, 'sharedUsers', crossDomainUserId);
     const sharedUserDoc = await getDoc(sharedUserRef);
-    
+
     const userData = {
       crossDomainUserId,
       firebaseUsers: {
@@ -146,7 +143,7 @@ async function createSharedUserDocument(crossDomainUserId: string, firebaseUserI
       lastSeen: serverTimestamp(),
       createdAt: sharedUserDoc.exists() ? sharedUserDoc.data().createdAt : serverTimestamp()
     };
-    
+
     // If document exists, merge the data
     if (sharedUserDoc.exists()) {
       const existingData = sharedUserDoc.data();
@@ -156,7 +153,7 @@ async function createSharedUserDocument(crossDomainUserId: string, firebaseUserI
       };
       userData.domains = [...new Set([...existingData.domains, window.location.hostname])];
     }
-    
+
     await setDoc(sharedUserRef, userData, { merge: true });
     console.log('Shared user document updated:', crossDomainUserId);
   } catch (error) {
@@ -177,10 +174,10 @@ export async function saveGameStatsToFirebase(gameStats: GameStats): Promise<voi
 
     const userRef = doc(db, 'users', user.uid);
     const userDoc = await getDoc(userRef);
-    
+
     const totalPlays = Object.values(gameStats).reduce((sum, game) => sum + game.playCount, 0);
-    const mostPlayedGame = Object.entries(gameStats).reduce((max, [name, stats]) => 
-      stats.playCount > (gameStats[max]?.playCount || 0) ? name : max, 
+    const mostPlayedGame = Object.entries(gameStats).reduce((max, [name, stats]) =>
+      stats.playCount > (gameStats[max]?.playCount || 0) ? name : max,
       Object.keys(gameStats)[0] || ''
     );
 
@@ -212,7 +209,7 @@ export async function loadGameStatsFromFirebase(): Promise<GameStats> {
 
     const userRef = doc(db, 'users', user.uid);
     const userDoc = await getDoc(userRef);
-    
+
     if (userDoc.exists()) {
       const data = userDoc.data() as UserGameData;
       console.log('Firebase: Game stats loaded successfully');
@@ -239,7 +236,7 @@ export function trackFirebaseEvent(eventName: string, parameters: Record<string,
       cross_domain_user_id: crossDomainUserId,
       domain: window.location.hostname
     };
-    
+
     logEvent(analytics, eventName, enhancedParameters);
     console.log('Firebase Analytics:', eventName, enhancedParameters);
   }
@@ -251,7 +248,7 @@ export function trackFirebaseEvent(eventName: string, parameters: Record<string,
  */
 export async function syncGameStatsWithFirebase(): Promise<GameStats> {
   const STORAGE_KEY = 'playful_game_stats';
-  
+
   // Get localStorage data
   let localStats: GameStats = {};
   if (typeof window !== 'undefined') {
@@ -268,10 +265,10 @@ export async function syncGameStatsWithFirebase(): Promise<GameStats> {
 
   // Merge data (Firebase takes precedence for conflicts)
   const mergedStats: GameStats = { ...localStats };
-  
+
   Object.entries(firebaseStats).forEach(([gameName, firebaseData]) => {
     const localData = localStats[gameName];
-    
+
     if (!localData) {
       // Game exists only in Firebase
       mergedStats[gameName] = firebaseData;
@@ -279,8 +276,8 @@ export async function syncGameStatsWithFirebase(): Promise<GameStats> {
       // Game exists in both - merge intelligently
       mergedStats[gameName] = {
         playCount: Math.max(localData.playCount, firebaseData.playCount),
-        lastPlayed: new Date(localData.lastPlayed) > new Date(firebaseData.lastPlayed) 
-          ? localData.lastPlayed 
+        lastPlayed: new Date(localData.lastPlayed) > new Date(firebaseData.lastPlayed)
+          ? localData.lastPlayed
           : firebaseData.lastPlayed,
         firstPlayed: new Date(localData.firstPlayed) < new Date(firebaseData.firstPlayed)
           ? localData.firstPlayed
@@ -297,9 +294,9 @@ export async function syncGameStatsWithFirebase(): Promise<GameStats> {
       console.error('Error saving to localStorage:', error);
     }
   }
-  
+
   await saveGameStatsToFirebase(mergedStats);
-  
+
   return mergedStats;
 }
 
