@@ -1,6 +1,5 @@
-import { initializeApp, getApp, getApps } from 'firebase/app';
-import { getFirestore, collection, query, orderBy, limit, getDocs } from 'firebase/firestore';
-import { getAuth, onAuthStateChanged, signInAnonymously, User } from 'firebase/auth';
+import { initializeApp, getApps } from 'firebase/app';
+import { getFirestore, collection, query, orderBy, limit, getDocs, Timestamp } from 'firebase/firestore';
 
 // Firebase config for leaderboard project from environment variables
 const leaderboardConfig = {
@@ -15,7 +14,6 @@ const leaderboardConfig = {
 // Create a dedicated named app to avoid conflicts
 const app = getApps().find(a => a.name === 'leaderboard') || initializeApp(leaderboardConfig, 'leaderboard');
 const db = getFirestore(app);
-const auth = getAuth(app);
 
 export type GameId = 'crossy-road' | 'traffic-run';
 
@@ -23,13 +21,16 @@ export interface LeaderboardEntry {
   userId: string;
   name: string;
   score: number;
-  createdAt?: any;
+  createdAt?: Timestamp | Date;
 }
 
 export async function getTopScores(gameId: GameId, topN = 10): Promise<LeaderboardEntry[]> {
   const col = collection(db, 'leaderboards', gameId, 'scores');
   const q = query(col, orderBy('score', 'desc'), limit(topN));
   const snap = await getDocs(q);
-  return snap.docs.map(d => ({ ...(d.data() as LeaderboardEntry) }));
+  return snap.docs.map(d => {
+    const data = d.data() as LeaderboardEntry;
+    return { ...data };
+  });
 }
 
