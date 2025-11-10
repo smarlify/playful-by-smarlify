@@ -52,7 +52,6 @@ export default function ParticleBackground() {
 
     // Resize canvas
     const resizeCanvas = () => {
-      const rect = canvas.getBoundingClientRect();
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
       canvas.style.width = '100%';

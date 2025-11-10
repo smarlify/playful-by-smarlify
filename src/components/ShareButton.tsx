@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Share2, Copy, Check, Twitter, Facebook, Linkedin, Link as LinkIcon } from 'lucide-react';
+import { Share2, Copy, Check, Twitter, Facebook, Linkedin } from 'lucide-react';
 import { Game } from '@/types';
 
 interface ShareButtonProps {
