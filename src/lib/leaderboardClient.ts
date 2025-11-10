@@ -1,18 +1,8 @@
-import { initializeApp, getApps } from 'firebase/app';
+import { getApp } from 'firebase/app';
 import { getFirestore, collection, query, orderBy, limit, getDocs, Timestamp } from 'firebase/firestore';
 
-// Firebase config for leaderboard project from environment variables
-const leaderboardConfig = {
-  apiKey: process.env.NEXT_PUBLIC_LEADERBOARD_API_KEY!,
-  authDomain: process.env.NEXT_PUBLIC_LEADERBOARD_AUTH_DOMAIN!,
-  projectId: process.env.NEXT_PUBLIC_LEADERBOARD_PROJECT_ID!,
-  storageBucket: process.env.NEXT_PUBLIC_LEADERBOARD_STORAGE_BUCKET!,
-  messagingSenderId: process.env.NEXT_PUBLIC_LEADERBOARD_MESSAGING_SENDER_ID!,
-  appId: process.env.NEXT_PUBLIC_LEADERBOARD_APP_ID!
-};
-
-// Create a dedicated named app to avoid conflicts
-const app = getApps().find(a => a.name === 'leaderboard') || initializeApp(leaderboardConfig, 'leaderboard');
+// Use the primary Firebase app (initialized in firebase.ts)
+const app = getApp();
 const db = getFirestore(app);
 
 export type GameId = 'crossy-road' | 'traffic-run';
