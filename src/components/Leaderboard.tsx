@@ -46,14 +46,27 @@ export default function Leaderboard({ gameName, isOpen, onClose }: LeaderboardPr
 
       const scores = await getTopScores(gameId, 10);
 
-      const leaderboardData: LeaderboardEntry[] = scores.map((entry, idx) => ({
-        id: `entry-${idx}`,
-        name: entry.name,
-        score: entry.score,
-        gameName,
-        timestamp: entry.createdAt?.toDate?.()?.toISOString() || entry.createdAt || new Date().toISOString(),
-        crossDomainUserId: entry.userId
-      }));
+      const leaderboardData: LeaderboardEntry[] = scores.map((entry, idx) => {
+        let timestamp: string;
+        if (!entry.createdAt) {
+          timestamp = new Date().toISOString();
+        } else if (entry.createdAt instanceof Date) {
+          timestamp = entry.createdAt.toISOString();
+        } else if ('toDate' in entry.createdAt && typeof entry.createdAt.toDate === 'function') {
+          timestamp = entry.createdAt.toDate().toISOString();
+        } else {
+          timestamp = new Date().toISOString();
+        }
+
+        return {
+          id: `entry-${idx}`,
+          name: entry.name,
+          score: entry.score,
+          gameName,
+          timestamp,
+          crossDomainUserId: entry.userId
+        };
+      });
 
       setEntries(leaderboardData);
     } catch (err) {
@@ -162,8 +175,8 @@ export default function Leaderboard({ gameName, isOpen, onClose }: LeaderboardPr
                 <div
                   key={entry.id}
                   className={`flex items-center gap-4 p-4 rounded-lg border transition-colors ${
-                    index < 3 
-                      ? 'bg-primary/5 border-primary/20' 
+                    index < 3
+                      ? 'bg-primary/5 border-primary/20'
                       : 'bg-muted/30 border-border hover:bg-muted/50'
                   }`}
                 >

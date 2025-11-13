@@ -9,15 +9,15 @@ import { getAuth, signInAnonymously, onAuthStateChanged } from 'firebase/auth';
 import { getFirestore, doc, setDoc, getDoc, serverTimestamp } from 'firebase/firestore';
 import { getAnalytics, logEvent } from 'firebase/analytics';
 
-// Firebase configuration
+// Firebase configuration from environment variables
 const firebaseConfig = {
-  apiKey: "AIzaSyBs4ePPl25niBHozW6kv2AGou5iw0aG5hQ",
-  authDomain: "smarlify-api.firebaseapp.com",
-  projectId: "smarlify-api",
-  storageBucket: "smarlify-api.firebasestorage.app",
-  messagingSenderId: "117162085061",
-  appId: "1:117162085061:web:cd64d13eff75941de17eac",
-  measurementId: "G-1JZRLPFQVT"
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+  measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID
 };
 
 // Initialize Firebase
